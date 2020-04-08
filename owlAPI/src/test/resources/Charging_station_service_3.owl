@@ -1,0 +1,178 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#"
+     xml:base="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls"
+     xmlns:process="http://www.daml.org/services/owl-s/1.2/Process.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:profile="http://www.daml.org/services/owl-s/1.2/Profile.owl#"
+	 xmlns:expr="http://www.daml.org/services/owl-s/1.2/generic/Expression.owl#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:smart_city_objects="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:service="http://www.daml.org/services/owl-s/1.2/Service.owl#"
+     xmlns:grounding="http://www.daml.org/services/owl-s/1.2/Grounding.owl#">
+    <owl:Ontology rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls">
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl"/>
+        <owl:imports rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects/1.1.0/smart_city_objects.owl"/>
+        <owl:imports rdf:resource="http://130.149.154.120:8080/emd/CommonDomainModel/CommonDomainModel.location.owl"/>
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl"/>
+        <owl:imports rdf:resource="http://130.149.154.120:8080/emd/CommonDomainModel/CommonDomainModel.charging.owl"/>
+        <owl:imports rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/CDMISCOMerger.owl"/>
+        <owl:imports rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/spatialdata.owl"/>
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Service.owl"/>
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Profile.owl"/>
+		<owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/generic/Expression.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/1999/02/22-rdf-syntax-ns#conditionAnnotation -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#conditionAnnotation"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#Charging_station_service_3 -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#Charging_station_service_3">
+        <rdf:type rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl#Service"/>
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Service.owl#Service"/>
+        <owl:sameAs rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#_profile"/>
+        <service:describedBy rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#_process"/>
+        <service:presents rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#_profile"/>
+        <smart_city_objects:hasID>8c33c163-fca6-46b2-95e4-39a262543b74</smart_city_objects:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#_process -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#_process">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#AtomicProcess"/>
+        <owl:sameAs rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#_profile"/>
+        <smart_city_objects:hasEffect rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#_EFFRULE"/>
+        <smart_city_objects:hasInput rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#input_car"/>
+        <smart_city_objects:hasInput rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#input_chargingstation"/>
+        <smart_city_objects:hasInput rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#input_location"/>
+        <smart_city_objects:hasPrecondition rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#_PRERULE"/>
+        <service:presentedBy rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#Charging_station_service_3"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#_profile -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#_profile">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Profile.owl#Profile"/>
+        <profile:hasInput rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#input_car"/>
+        <profile:hasInput rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#input_chargingstation"/>
+        <profile:hasInput rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#input_location"/>
+        <profile:has_process rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#_process"/>
+        <service:presentedBy rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#Charging_station_service_3"/>
+        <smart_city_objects:hasDescription>Finds the charging station for a specific location.</smart_city_objects:hasDescription>
+        <smart_city_objects:hasLabel>Charging_station_service_3</smart_city_objects:hasLabel>
+		<smart_city_objects:hasDomain rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl#TransportationAndMobility"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#input_car -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#input_car">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#Input"/>
+        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://130.149.154.120:8080/emd/CommonDomainModel/CommonDomainModel.vehicle.owl#ElectricCar</process:parameterType>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#input_chargingstation -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#input_chargingstation">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#Input"/>
+        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://130.149.154.120:8080/emd/CommonDomainModel/CommonDomainModel.charging.owl#ChargingStation</process:parameterType>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#input_location -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#input_location">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#Input"/>
+        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://130.149.154.120:8080/emd/CommonDomainModel/CommonDomainModel.location.owl#GeoLocation</process:parameterType>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#_PRERULE">
+		<rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/generic/Expression.owl#SWRL-Condition"/>
+        <expr:expressionObject>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://130.149.154.120:8080/emd/CommonDomainModel/CommonDomainModel.location.owl#geoLocation"/>
+                        <swrl:argument1 rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#input_car"/>
+                        <swrl:argument2 rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#input_location"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </expr:expressionObject>
+    </owl:NamedIndividual>
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#_EFFRULE">
+		<rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/generic/Expression.owl#SWRL-Condition"/>
+        <expr:expressionObject>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/CDMISCOMerger.owl#isNearest"/>
+                        <swrl:argument1 rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#input_location"/>
+                        <swrl:argument2 rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/final/services/Charging_station_service_3.owls#input_chargingstation"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </expr:expressionObject>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+

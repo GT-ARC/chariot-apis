@@ -1,0 +1,180 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#"
+     xml:base="http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls"
+     xmlns:process="http://www.daml.org/services/owl-s/1.2/Process.owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:service="http://www.daml.org/services/owl-s/1.2/Service.owl#"
+     xmlns:profile="http://www.daml.org/services/owl-s/1.2/Profile.owl#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:grounding="http://www.daml.org/services/owl-s/1.2/Grounding.owl#"
+	 xmlns:smart_city_objects="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl#"
+	 xmlns:sco="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl#">
+    <owl:Ontology rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls">
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl"/>
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl"/>
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Profile.owl"/>
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Service.owl"/>
+		<owl:imports rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/1999/02/22-rdf-syntax-ns#conditionAnnotation -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#conditionAnnotation"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl#hasOutput -->
+
+    <owl:ObjectProperty rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl#hasOutput"/>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl#hasRegion -->
+
+    <owl:ObjectProperty rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl#hasRegion"/>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/spatialdata.owl#isNearest -->
+
+    <owl:ObjectProperty rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/spatialdata.owl#isNearest"/>
+    
+
+
+    <!-- http://www.daml.org/services/owl-s/1.2/Profile.owl#hasEffect -->
+
+    <owl:ObjectProperty rdf:about="http://www.daml.org/services/owl-s/1.2/Profile.owl#hasEffect"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#input_location -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#input_location"/>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#output_nearest_isco_service -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#output_nearest_isco_service"/>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#output_nearest_service -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#output_nearest_service"/>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#Var_location -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#Var_location"/>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#Var_output -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#Var_output"/>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#Var_profile -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#Var_profile"/>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#_EFFRULE -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#_EFFRULE"/>
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#getNearestWeatherReportService.owl -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#getNearestWeatherReportService.owl">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Service.owl#Service"/>
+		<rdf:type rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl#Service"/>
+        <service:presents rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#_profile"/>
+		<smart_city_objects:hasInput rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#input_location"/>
+        <smart_city_objects:hasOutput rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#output_nearest_isco_service"/>
+        <smart_city_objects:hasOutput rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#output_nearest_service"/>
+		<smart_city_objects:hasID>1d340f8a-12e8-45d4-9d83-7e05c95ec96c</smart_city_objects:hasID>
+		<smart_city_objects:hasLabel>getNearestWeatherReportService.owl</smart_city_objects:hasLabel>
+		<smart_city_objects:hasDomain rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl#Living"/>
+        <smart_city_objects:hasDescription>get the nearest service that provides weather reports</smart_city_objects:hasDescription>
+		<smart_city_objects:hasClassification>http://linkedmodel.org/vocab/industry-codes/naics-2007#Code_541990</smart_city_objects:hasClassification>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#input_location -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#input_location">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#Input"/>
+        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://isco-dev.aot.tu-berlin.de/ontologies/spatialdata.owl#Location</process:parameterType>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#output_nearest_isco_service -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#output_nearest_isco_service">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#Output"/>
+        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl#Service</process:parameterType>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#output_nearest_service -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/living/getNearestWeatherReportService.owls#output_nearest_service">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#Output"/>
+        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://www.daml.org/services/owl-s/1.2/Service.owl#Service</process:parameterType>
+    </owl:NamedIndividual>
+	
+	
+	
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net -->
+

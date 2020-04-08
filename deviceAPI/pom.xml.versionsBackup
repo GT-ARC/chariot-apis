@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>de.gtarc.chariot</groupId>
+        <artifactId>chariot</artifactId>
+        <version>0.1.3</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    <artifactId>deviceAPI</artifactId>
+    <name>Device Integration API</name>
+    <packaging>jar</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <skip.assembly>false</skip.assembly>
+    </properties>
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>de.gtarc.chariot</groupId>
+            <artifactId>connectionAPI</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.26</version>
+        </dependency>
+        <!--
+         These libs are required for just testing the device connection API
+        -->
+        <!--
+         https://mvnrepository.com/artifact/javax.websocket/javax.websocket-api
+        -->
+        <dependency>
+            <groupId>javax.websocket</groupId>
+            <artifactId>javax.websocket-api</artifactId>
+            <version>1.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <!--
+         https://github.com/jetty-project/embedded-websocket-echo-examples example
+        -->
+        <dependency>
+            <groupId>org.eclipse.jetty.websocket</groupId>
+            <artifactId>websocket-server</artifactId>
+            <version>9.4.18.v20190429</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty.websocket</groupId>
+            <artifactId>javax-websocket-server-impl</artifactId>
+            <version>9.4.18.v20190429</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty.websocket</groupId>
+            <artifactId>websocket-servlet</artifactId>
+            <version>9.4.18.v20190429</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-util</artifactId>
+            <version>9.4.18.v20190429</version>
+        </dependency>
+        <!--
+         https://mvnrepository.com/artifact/org.eclipse.paho/org.eclipse.paho.client.mqttv3
+        -->
+        <dependency>
+            <groupId>org.eclipse.paho</groupId>
+            <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
+            <version>1.2.1</version>
+        </dependency>
+        <!--
+         https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server
+        -->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>9.4.18.v20190429</version>
+        </dependency>
+        <!--
+         https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-servlets
+        -->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlets</artifactId>
+            <version>9.4.18.v20190429</version>
+        </dependency>
+    </dependencies>
+</project>

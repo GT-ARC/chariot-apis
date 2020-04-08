@@ -1,0 +1,163 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#"
+     xml:base="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls"
+     xmlns:process="http://www.daml.org/services/owl-s/1.2/Process.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:profile="http://www.daml.org/services/owl-s/1.2/Profile.owl#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:smart_city_objects="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+	 xmlns:expr="http://www.daml.org/services/owl-s/1.2/generic/Expression.owl#"
+     xmlns:service="http://www.daml.org/services/owl-s/1.2/Service.owl#"
+     xmlns:grounding="http://www.daml.org/services/owl-s/1.2/Grounding.owl#">
+    <owl:Ontology rdf:about="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls">
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl"/>
+        <owl:imports rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects/1.1.0/smart_city_objects.owl"/>
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl"/>
+        <owl:imports rdf:resource="http://130.149.154.120:8080/emd/CommonDomainModel/CommonDomainModel.charging.owl"/>
+        <owl:imports rdf:resource="http://chariot-km.dai-lab.de/ontologies/iot-services/iot-services.owl"/>
+        <owl:imports rdf:resource="http://chariot-km.dai-lab.de/ontologies/iot-services/iot-services.owl"/>
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Service.owl"/>
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Profile.owl"/>
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/generic/Expression.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/1999/02/22-rdf-syntax-ns#conditionAnnotation -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#conditionAnnotation"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+    
+    
+
+
+    <!-- http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#_process -->
+
+    <owl:NamedIndividual rdf:about="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#_process">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#AtomicProcess"/>
+        <owl:sameAs rdf:resource="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#_profile"/>
+        <smart_city_objects:hasEffect rdf:resource="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#_EFFRULE"/>
+        <smart_city_objects:hasInput rdf:resource="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#input_service"/>
+        <smart_city_objects:hasPrecondition rdf:resource="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#_PRERULE"/>
+        <service:presentedBy rdf:resource="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#clearService"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#_profile -->
+
+    <owl:NamedIndividual rdf:about="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#_profile">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Profile.owl#Profile"/>
+        <owl:sameAs rdf:resource="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#clearService"/>
+        <profile:hasInput rdf:resource="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#input_service"/>
+        <!-- profile:hasInput rdf:resource="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#input_chargingstation"/-->
+        <profile:has_process rdf:resource="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#_process"/>
+        <service:presentedBy rdf:resource="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#clearService"/>
+        <smart_city_objects:hasDescription>Clear service.</smart_city_objects:hasDescription>
+        <smart_city_objects:hasLabel>clearService</smart_city_objects:hasLabel>
+        <!-- smart_city_objects:hasDomain rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl#TransportationAndMobility"/-->
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#clearService -->
+
+    <owl:NamedIndividual rdf:about="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#clearService">
+        <rdf:type rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl#Service"/>
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Service.owl#Service"/>
+        <service:describedBy rdf:resource="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#_process"/>
+        <service:presents rdf:resource="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#_profile"/>
+        <smart_city_objects:hasID>9d0262ca-9cb4-451a-8a4d-677c723caabd</smart_city_objects:hasID>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#input_service -->
+
+    <owl:NamedIndividual rdf:about="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#input_service">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#Input"/>
+        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://chariot-km.dai-lab.de/ontologies/iot-services/iot-services.owl#Service</process:parameterType>
+    </owl:NamedIndividual>   
+
+
+    
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <!-- http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#_EFFRULE -->
+
+    <owl:NamedIndividual rdf:about="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#_EFFRULE">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/generic/Expression.owl#SWRL-Condition"/>
+        <expr:expressionObject>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://chariot-km.dai-lab.de/ontologies/iot-services/iot-services.owl#ServiceCleared"/>
+                        <swrl:argument1 rdf:resource="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#input_service"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </expr:expressionObject>
+    </owl:NamedIndividual>
+    
+    
+    
+    <!-- http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#_PRERULE -->
+	
+    <owl:NamedIndividual rdf:about="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#_PRERULE">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/generic/Expression.owl#SWRL-Condition"/>
+         <expr:expressionObject>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                        <swrl:classPredicate rdf:resource="http://chariot-km.dai-lab.de/ontologies/iot-services/iot-services.owl#ServiceDisconnected"/>
+                        <swrl:argument1 rdf:resource="http://chariot-km.dai-lab.de/ontologies/iot-services/chariot_service_clear.owls#input_service"/>
+                    </rdf:Description>
+                </rdf:first>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+            </rdf:Description>
+        </expr:expressionObject>
+    </owl:NamedIndividual>
+	
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+

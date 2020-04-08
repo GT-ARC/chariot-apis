@@ -1,0 +1,179 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#"
+     xml:base="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl"
+     xmlns:process="http://www.daml.org/services/owl-s/1.2/Process.owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:spatialdata="http://isco-dev.aot.tu-berlin.de/ontologies/spatialdata.owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:expr="http://www.daml.org/services/owl-s/1.2/generic/Expression.owl#"
+     xmlns:smart_city_objects="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl#"
+     xmlns:vehicle="http://130.149.154.120:8080/emd/CommonDomainModel/CommonDomainModel.vehicle.owl#">
+    <owl:Ontology rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl">
+        <owl:imports rdf:resource="http://130.149.154.120:8080/emd/CommonDomainModel/CommonDomainModel.vehicle.owl"/>
+        <owl:imports rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl"/>
+        <owl:imports rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/spatialdata.owl"/>
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Profile.owl"/>
+        <owl:imports rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+     
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#area -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#area">
+        <rdf:type rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/spatialdata.owl#Polygon"/>
+        <spatialdata:location rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#location1"/>
+        <spatialdata:location rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#location2"/>
+        <spatialdata:location rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#location3"/>
+        <spatialdata:location rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#location4"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#findCarPark -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#findCarPark">
+        <rdf:type rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl#Service"/>
+        <process:hasEffect rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#_EFFRULE"/>
+        <smart_city_objects:hasDomain rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl#TransportationAndMobility"/>
+        <smart_city_objects:hasInput rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#input_car"/>
+        <smart_city_objects:hasInput rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#input_location"/>
+        <smart_city_objects:hasRegion rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#area"/>
+        <smart_city_objects:hasBundle rdf:datatype="http://www.w3.org/2001/XMLSchema#string">bundle-12026</smart_city_objects:hasBundle>
+        <smart_city_objects:hasDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Virtual service that moves an electric car from one to another location.</smart_city_objects:hasDescription>
+        <smart_city_objects:hasID rdf:datatype="http://www.w3.org/2001/XMLSchema#string">52e023e5-3191-4145-8d59-2e0da794a823</smart_city_objects:hasID>
+        <smart_city_objects:hasLabel rdf:datatype="http://www.w3.org/2001/XMLSchema#string">electricCar.goTo</smart_city_objects:hasLabel>
+        <smart_city_objects:hasPriority rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Low</smart_city_objects:hasPriority>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#input_car -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#input_car">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#Input"/>
+        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://130.149.154.120:8080/emd/CommonDomainModel/CommonDomainModel.vehicle.owl#ElectricCar</process:parameterType>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#input_location -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#input_location">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#Input"/>
+        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://isco-dev.aot.tu-berlin.de/ontologies/spatialdata.owl#Location</process:parameterType>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#location1 -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#location1">
+        <rdf:type rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/spatialdata.owl#Location"/>
+        <spatialdata:latitude rdf:datatype="http://www.w3.org/2001/XMLSchema#double">52.560337</spatialdata:latitude>
+        <spatialdata:longitude rdf:datatype="http://www.w3.org/2001/XMLSchema#double">13.316116</spatialdata:longitude>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#location2 -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#location2">
+        <rdf:type rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/spatialdata.owl#Location"/>
+        <spatialdata:latitude rdf:datatype="http://www.w3.org/2001/XMLSchema#double">52.572441</spatialdata:latitude>
+        <spatialdata:longitude rdf:datatype="http://www.w3.org/2001/XMLSchema#double">13.524857</spatialdata:longitude>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#location3 -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#location3">
+        <rdf:type rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/spatialdata.owl#Location"/>
+        <spatialdata:latitude rdf:datatype="http://www.w3.org/2001/XMLSchema#double">52.495588</spatialdata:latitude>
+        <spatialdata:longitude rdf:datatype="http://www.w3.org/2001/XMLSchema#double">13.52417</spatialdata:longitude>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#location4 -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#location4">
+        <rdf:type rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/spatialdata.owl#Location"/>
+        <spatialdata:latitude rdf:datatype="http://www.w3.org/2001/XMLSchema#double">52.449161</spatialdata:latitude>
+        <spatialdata:longitude rdf:datatype="http://www.w3.org/2001/XMLSchema#double">13.388214</spatialdata:longitude>
+    </owl:NamedIndividual>
+    
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#var_endpos">
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Variable"/>
+    </rdf:Description>
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#_EFFRULE">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/generic/Expression.owl#SWRL-Condition"/>
+        <expr:expressionObject>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:rest>
+                        <rdf:Description>
+                            <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                            <rdf:first>
+                                <rdf:Description>
+                                    <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                    <swrl:propertyPredicate rdf:resource="http://130.149.154.120:8080/emd/CommonDomainModel/CommonDomainModel.route.owl#endPosition"/>
+                                    <swrl:argument1 rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#input_car"/>
+                                    <swrl:argument2 rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#var_endpos"/>
+                                </rdf:Description>
+                            </rdf:first>
+                            <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        </rdf:Description>
+                    </rdf:rest>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#ClassAtom"/>
+                                <swrl:argument1 rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#input_car"/>
+                                <swrl:classPredicate rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#Input"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>
+                </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo/CDMISCOMerger.owl#isNearest"/>
+                        <swrl:argument1 rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#input_car"/>
+                        <swrl:argument2 rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/mobility/electricCar.goTo.owl#output_location"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </expr:expressionObject>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi -->
+

@@ -1,0 +1,222 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#"
+     xml:base="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:smart_city="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:spatialdata="http://isco-dev.aot.tu-berlin.de/ontologies/spatialdata.owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:wgs84_pos="http://www.w3.org/2003/01/geo/wgs84_pos#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl">
+        <owl:imports rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/spatialdata.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#hasAccessRight -->
+
+    <owl:ObjectProperty rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#hasAccessRight">
+        <rdfs:subPropertyOf rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#hasRight"/>
+        <rdfs:range rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#AccessRight"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#hasRight -->
+
+    <owl:ObjectProperty rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#hasRight">
+        <rdfs:domain rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#Role"/>
+        <rdfs:range rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#Right"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#hasRole -->
+
+    <owl:ObjectProperty rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#hasRole">
+        <rdfs:domain rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#User"/>
+        <rdfs:range rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#Role"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#isAt -->
+
+    <owl:ObjectProperty rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#isAt">
+        <rdfs:domain rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#User"/>
+        <rdfs:range rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/spatialdata.owl#Point"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#hasPassword -->
+
+    <owl:DatatypeProperty rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#hasPassword">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#User"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#hasUserName -->
+
+    <owl:DatatypeProperty rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#hasUserName">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#User"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#isLoggedIn -->
+
+    <owl:DatatypeProperty rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#isLoggedIn">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#User"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#AccessRight -->
+
+    <owl:Class rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#AccessRight">
+        <rdfs:subClassOf rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#Right"/>
+        <rdfs:comment xml:lang="en">Access rights define what parts of the system can be accessed.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#LoggedInUser -->
+
+    <owl:Class rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#LoggedInUser">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#isLoggedIn"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#User"/>
+    </owl:Class>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#MunicipalityRole -->
+
+    <owl:Class rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#MunicipalityRole">
+        <rdfs:subClassOf rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#Role"/>
+    </owl:Class>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#NotLoggedInUser -->
+
+    <owl:Class rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#NotLoggedInUser">
+        <owl:equivalentClass>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#isLoggedIn"/>
+                <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+            </owl:Restriction>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#User"/>
+    </owl:Class>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#ProviderRole -->
+
+    <owl:Class rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#ProviderRole">
+        <rdfs:subClassOf rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#Role"/>
+    </owl:Class>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#Right -->
+
+    <owl:Class rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#Right"/>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#Role -->
+
+    <owl:Class rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#Role">
+        <rdfs:comment xml:lang="en">A role describes in a generic way how a user can interact with the system.</rdfs:comment>
+    </owl:Class>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#User -->
+
+    <owl:Class rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#User"/>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#UserRole -->
+
+    <owl:Class rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#UserRole">
+        <rdfs:subClassOf rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#Role"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#exampleUser -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#exampleUser">
+        <rdf:type rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city.owl#User"/>
+        <hasPassword>Test1234</hasPassword>
+        <hasUserName>paul</hasUserName>
+        <isLoggedIn rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</isLoggedIn>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.6.20160910-2108) https://github.com/owlcs/owlapi -->
+

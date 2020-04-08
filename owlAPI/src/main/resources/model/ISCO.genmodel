@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/api/src/main/java" modelPluginID="com.gtarc.chariot.api"
+    redirection="" modelName="ISCO" rootExtendsInterface="com.gtarc.chariot.api.model.domainmodel.SerializableEObject"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" suppressEMFTypes="true"
+    testsDirectory="/com.gtarc.chariot.api/src/test/java" importerID="org.eclipse.emf.importer.ecore"
+    bundleManifest="false" complianceLevel="8.0" copyrightFields="false" testsPluginID="com.gtarc.chariot.api"
+    language="" interfaceNamePattern="" operationReflection="true" importOrganizing="true">
+  <foreignModel>ISCO.ecore</foreignModel>
+  <genPackages prefix="Isco" basePackage="com.gtarc.chariot.api.model" disposableProviderFactory="true"
+      adapterFactory="false" ecorePackage="ISCO.ecore#/">
+    <genDataTypes ecoreDataType="ISCO.ecore#//URI"/>
+    <genDataTypes ecoreDataType="ISCO.ecore#//SWRLRule"/>
+    <genDataTypes ecoreDataType="ISCO.ecore#//UUID"/>
+    <nestedGenPackages prefix="Domainmodel" basePackage="com.gtarc.chariot.api.model"
+        disposableProviderFactory="true" dataTypeConverters="true" ecorePackage="ISCO.ecore#//domainmodel">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="ISCO.ecore#//domainmodel/Accessibility">
+        <genEnumLiterals ecoreEnumLiteral="ISCO.ecore#//domainmodel/Accessibility/UNDEFINED"/>
+        <genEnumLiterals ecoreEnumLiteral="ISCO.ecore#//domainmodel/Accessibility/OPEN"/>
+        <genEnumLiterals ecoreEnumLiteral="ISCO.ecore#//domainmodel/Accessibility/PROTECTED"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="ISCO.ecore#//domainmodel/ActivationStatus">
+        <genEnumLiterals ecoreEnumLiteral="ISCO.ecore#//domainmodel/ActivationStatus/UNDEFINED"/>
+        <genEnumLiterals ecoreEnumLiteral="ISCO.ecore#//domainmodel/ActivationStatus/OFF"/>
+        <genEnumLiterals ecoreEnumLiteral="ISCO.ecore#//domainmodel/ActivationStatus/ON"/>
+        <genEnumLiterals ecoreEnumLiteral="ISCO.ecore#//domainmodel/ActivationStatus/BLOCKED"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="ISCO.ecore#//domainmodel/Owner">
+        <genEnumLiterals ecoreEnumLiteral="ISCO.ecore#//domainmodel/Owner/UNDEFINED"/>
+        <genEnumLiterals ecoreEnumLiteral="ISCO.ecore#//domainmodel/Owner/PRIVATE"/>
+        <genEnumLiterals ecoreEnumLiteral="ISCO.ecore#//domainmodel/Owner/MUNICIPALITY"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="ISCO.ecore#//domainmodel/MeasuringMode">
+        <genEnumLiterals ecoreEnumLiteral="ISCO.ecore#//domainmodel/MeasuringMode/UNDEFINED"/>
+        <genEnumLiterals ecoreEnumLiteral="ISCO.ecore#//domainmodel/MeasuringMode/CONSTANT"/>
+        <genEnumLiterals ecoreEnumLiteral="ISCO.ecore#//domainmodel/MeasuringMode/BY_REQUEST"/>
+        <genEnumLiterals ecoreEnumLiteral="ISCO.ecore#//domainmodel/MeasuringMode/INTERVAL"/>
+        <genEnumLiterals ecoreEnumLiteral="ISCO.ecore#//domainmodel/MeasuringMode/CONTINUOUS"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="ISCO.ecore#//domainmodel/Domain">
+        <genEnumLiterals ecoreEnumLiteral="ISCO.ecore#//domainmodel/Domain/SMART_CITY"/>
+        <genEnumLiterals ecoreEnumLiteral="ISCO.ecore#//domainmodel/Domain/TRANSPORTATION_AND_MOBILITY"/>
+        <genEnumLiterals ecoreEnumLiteral="ISCO.ecore#//domainmodel/Domain/LIVING"/>
+        <genEnumLiterals ecoreEnumLiteral="ISCO.ecore#//domainmodel/Domain/BUILDINGS"/>
+        <genEnumLiterals ecoreEnumLiteral="ISCO.ecore#//domainmodel/Domain/ECONOMY_AND_PEOPLE"/>
+        <genEnumLiterals ecoreEnumLiteral="ISCO.ecore#//domainmodel/Domain/GOVERNMENT"/>
+        <genEnumLiterals ecoreEnumLiteral="ISCO.ecore#//domainmodel/Domain/NATURAL_RESOURCES_AND_ENERGY"/>
+      </genEnums>
+      <genDataTypes ecoreDataType="ISCO.ecore#//domainmodel/Metric">
+        <genTypeParameters ecoreTypeParameter="ISCO.ecore#//domainmodel/Metric/T"/>
+      </genDataTypes>
+      <genClasses image="false" ecoreClass="ISCO.ecore#//domainmodel/SmartCityObject">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/SmartCityObject/label"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/SmartCityObject/domains"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/SmartCityObject/id"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/SmartCityObject/description"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/SmartCityObject/accessibility"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/SmartCityObject/precondition"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ISCO.ecore#//domainmodel/SmartCityObject/endpoint"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/SmartCityObject/quality"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/SmartCityObject/iri"/>
+      </genClasses>
+      <genClasses ecoreClass="ISCO.ecore#//domainmodel/Device">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference ISCO.ecore#//domainmodel/Device/location"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ISCO.ecore#//domainmodel/Device/operationalArea"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/Device/activationStatus"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/Device/group"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/Device/owner"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ISCO.ecore#//domainmodel/Device/properties"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/Device/type"/>
+      </genClasses>
+      <genClasses ecoreClass="ISCO.ecore#//domainmodel/Actuator">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/Actuator/effect"/>
+      </genClasses>
+      <genClasses ecoreClass="ISCO.ecore#//domainmodel/Sensor">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/Sensor/mode"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference ISCO.ecore#//domainmodel/Sensor/output"/>
+      </genClasses>
+      <genClasses ecoreClass="ISCO.ecore#//domainmodel/Service">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference ISCO.ecore#//domainmodel/Service/region"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/Service/effect"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/Service/priority"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/Service/bundle"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ISCO.ecore#//domainmodel/Service/inputs"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ISCO.ecore#//domainmodel/Service/outputs"/>
+      </genClasses>
+      <genClasses ecoreClass="ISCO.ecore#//domainmodel/Parameter">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/Parameter/label"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/Parameter/type"/>
+      </genClasses>
+      <genClasses ecoreClass="ISCO.ecore#//domainmodel/Endpoint"/>
+      <genClasses ecoreClass="ISCO.ecore#//domainmodel/RestEndpoint">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/RestEndpoint/uri"/>
+      </genClasses>
+      <genClasses ecoreClass="ISCO.ecore#//domainmodel/JiacAgentEndpoint">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/JiacAgentEndpoint/agentNodeId"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/JiacAgentEndpoint/agentId"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//domainmodel/JiacAgentEndpoint/actionName"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Spatialdata" basePackage="com.gtarc.chariot.api.model"
+        disposableProviderFactory="true" ecorePackage="ISCO.ecore#//spatialdata">
+      <genClasses image="false" ecoreClass="ISCO.ecore#//spatialdata/SpatialObject"/>
+      <genClasses ecoreClass="ISCO.ecore#//spatialdata/Point">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ISCO.ecore#//spatialdata/Point/location"/>
+      </genClasses>
+      <genClasses ecoreClass="ISCO.ecore#//spatialdata/Rectangle">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference ISCO.ecore#//spatialdata/Rectangle/x1"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference ISCO.ecore#//spatialdata/Rectangle/x2"/>
+      </genClasses>
+      <genClasses ecoreClass="ISCO.ecore#//spatialdata/Circle">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//spatialdata/Circle/radius"/>
+      </genClasses>
+      <genClasses ecoreClass="ISCO.ecore#//spatialdata/FreeForm">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference ISCO.ecore#//spatialdata/FreeForm/locations"/>
+      </genClasses>
+      <genClasses ecoreClass="ISCO.ecore#//spatialdata/Location">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//spatialdata/Location/latitude"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//spatialdata/Location/longitude"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//spatialdata/Location/altitude"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Properties" basePackage="com.gtarc.chariot.api.model"
+        disposableProviderFactory="true" ecorePackage="ISCO.ecore#//properties">
+      <genClasses image="false" ecoreClass="ISCO.ecore#//properties/Property">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//properties/Property/label"/>
+      </genClasses>
+      <genClasses ecoreClass="ISCO.ecore#//properties/SimpleProperty">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//properties/SimpleProperty/value"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//properties/SimpleProperty/unit"/>
+      </genClasses>
+      <genClasses ecoreClass="ISCO.ecore#//properties/ComplexProperty">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ISCO.ecore#//properties/ComplexProperty/subProperties"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Common" basePackage="com.gtarc.chariot.api.model" disposableProviderFactory="true"
+        ecorePackage="ISCO.ecore#//common">
+      <genClasses image="false" ecoreClass="ISCO.ecore#//common/Role">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference ISCO.ecore#//common/Role/rights"/>
+      </genClasses>
+      <genClasses ecoreClass="ISCO.ecore#//common/ServiceProvider"/>
+      <genClasses ecoreClass="ISCO.ecore#//common/User">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//common/User/username"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute ISCO.ecore#//common/User/password"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="ISCO.ecore#//common/Right"/>
+      <genClasses ecoreClass="ISCO.ecore#//common/Municipality"/>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

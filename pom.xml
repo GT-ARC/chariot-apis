@@ -1,0 +1,213 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>de.gtarc.chariot</groupId>
+    <artifactId>chariot</artifactId>
+    <packaging>pom</packaging>
+    <version>0.1.4</version>
+    <name>CHARIOT APIs</name>
+    <description>CHARIOT API</description>
+    <inceptionYear>2017</inceptionYear>
+
+    <organization>
+        <name>GT-ARC</name>
+        <url>http://www.gt-arc.com</url>
+    </organization>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.compiler.version>1.8</java.compiler.version>
+        <javadoc.version>1.8</javadoc.version>
+        <junit.version>4.12</junit.version>
+        <skip.assembly>true</skip.assembly>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <!-- timestamp variable workaround for resource filtering -->
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <sonar.java.source>1.8</sonar.java.source>
+        <!-- for common versions -->
+        <tycho-version>0.26.0</tycho-version>
+        <jung-version>2.0.1</jung-version>
+        <slf4j-version>1.7.25</slf4j-version>
+        <owlapi.version>5.1.4</owlapi.version>
+        <build_os>win32</build_os>
+        <build_ws>win32</build_ws>
+        <build_arch>x86_64</build_arch>
+        <skipDeploy>true</skipDeploy>
+        <skipInstall>true</skipInstall>
+    </properties>
+
+    <modules>
+        <module>commonAPI</module>
+        <module>messageAPI</module>
+        <module>connectionAPI</module>
+        <module>deviceAPI</module>
+        <module>humanAPI</module>
+        <module>serviceAPI</module>
+        <module>dbhandlerAPI</module>
+        <module>registrationAPI</module>
+        <module>owlAPI</module>
+    </modules>
+
+    <repositories>
+        <repository>
+            <id>dai-open</id>
+            <name>DAI Open Repository</name>
+            <url>
+                http://repositories.dai-labor.de/extern/content/repositories/dai-open/
+            </url>
+            <layout>default</layout>
+        </repository>
+        <repository>
+            <id>dai-releases</id>
+            <name>DAI Maven 2 Releases Repository</name>
+            <url>http://repositories.dai-labor.de/nexus/content/repositories/dai-releases/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>dai-open-snapshot</id>
+            <name>DAI Open Snapshot</name>
+            <url>http://repositories.dai-labor.de/extern/content/repositories/dai-open-snapshot/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>dai-snapshots</id>
+            <name>DAI Snapshots</name>
+            <url>http://repositories.dai-labor.de/nexus/content/repositories/dai-snapshots/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>thirdparty</id>
+            <name>thirdparty</name>
+            <url>http://repositories.dai-labor.de/nexus/content/repositories/thirdparty/</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>dai-open</id>
+            <name>DAI Open Repository</name>
+            <url>
+                http://repositories.dai-labor.de/extern/content/repositories/dai-open/
+            </url>
+            <layout>default</layout>
+        </repository>
+        <snapshotRepository>
+            <id>dai-snapshots</id>
+            <name>DAI Nexus Snapshots</name>
+            <url>http://repositories.dai-labor.de/nexus/content/repositories/dai-snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>de.gtarc.chariot</groupId>
+                <artifactId>messageAPI</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.gtarc.chariot</groupId>
+                <artifactId>connectionAPI</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.gtarc.chariot</groupId>
+                <artifactId>deviceAPI</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.gtarc.chariot</groupId>
+                <artifactId>registrationAPI</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.gtarc.chariot</groupId>
+                <artifactId>commonAPI</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.gtarc.chariot</groupId>
+                <artifactId>humanAPI</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.gtarc.chariot</groupId>
+                <artifactId>serviceAPI</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.gtarc.chariot</groupId>
+                <artifactId>dbhandlerAPI</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>de.gtarc.chariot</groupId>
+                <artifactId>owlAPI</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <skipAssembly>${skip.assembly}</skipAssembly>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

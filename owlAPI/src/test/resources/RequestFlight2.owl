@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#"
+     xml:base="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl"
+     xmlns:process="http://www.daml.org/services/owl-s/1.2/Process.owl#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:grounding="http://www.daml.org/services/owl-s/1.2/Grounding.owl#"
+     xmlns:service="http://www.daml.org/services/owl-s/1.2/Service.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:profile="http://www.daml.org/services/owl-s/1.2/Profile.owl#">
+    <owl:Ontology rdf:about="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl">
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl"/>
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl"/>
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Profile.owl"/>
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Service.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/1999/02/22-rdf-syntax-ns#conditionAnnotation -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#conditionAnnotation"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <owl:NamedIndividual rdf:about="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#SomeFlightCategory">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#Input"/>
+        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://127.0.0.1/health-scallops/ontology/Health-Scallops_Ontology.owl#FlightCategory</process:parameterType>
+    </owl:NamedIndividual>
+ 
+     <owl:NamedIndividual rdf:about="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#DepartureTime">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#Input"/>
+        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://127.0.0.1/health-scallops/ontology/Health-Scallops_Ontology.owl#Time</process:parameterType>
+    </owl:NamedIndividual>
+ 
+     <owl:NamedIndividual rdf:about="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#ArrivalTime">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#Input"/>
+        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://127.0.0.1/health-scallops/ontology/Health-Scallops_Ontology.owl#Time</process:parameterType>
+    </owl:NamedIndividual>
+	
+	    <!-- http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#RequestParameters -->
+
+    <owl:NamedIndividual rdf:about="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#RequestParameters">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#Input"/>
+        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://127.0.0.1/health-scallops/ontology/Health-Scallops_Ontology.owl#FlightParameters</process:parameterType>
+    </owl:NamedIndividual>
+
+    <!-- http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#AtomicProcess -->
+
+    <owl:NamedIndividual rdf:about="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#AtomicProcess">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#AtomicProcess"/>
+        <process:hasInput rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#SomeFlightCategory"/>
+		<process:hasInput rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#RequestParameters"/>
+		<process:hasInput rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#ArrivalTime"/>
+		<process:hasInput rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#DepartureTime"/>		
+        <service:presentedBy rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#Request_Flight_Params2"/>
+        <process:hasEffect rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#_EFFRULE1"/>
+        <process:hasEffect rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#_EFFRULE2"/>
+        <process:hasEffect rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#_EFFRULE3"/>
+    </owl:NamedIndividual>
+    
+
+    <!-- http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#Profile -->
+
+    <owl:NamedIndividual rdf:about="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#Profile">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Profile.owl#Profile"/>
+        <profile:textDescription>This service proposes a flight for a given set of flight parameters (departure airport, arrival airport ...) that is provided by the flight company 2.</profile:textDescription>
+        <profile:serviceName>Request_Flight_Params2</profile:serviceName>
+        <profile:hasInput rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#SomeFlightCategory"/>
+		<process:hasInput rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#ArrivalTime"/>
+		<process:hasInput rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#DepartureTime"/>	
+        <profile:hasInput rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#RequestParameters"/>		
+        <profile:has_process rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#AtomicProcess"/>
+        <service:presentedBy rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#Request_Flight_Params2"/>
+        <profile:hasEffect rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#_EFFRULE1"/>
+        <profile:hasEffect rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#_EFFRULE2"/>
+        <profile:hasEffect rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#_EFFRULE3"/>	
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#Request_Flight_Params2 -->
+
+    <owl:NamedIndividual rdf:about="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#Request_Flight_Params2">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Service.owl#Service"/>
+        <service:describedBy rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#AtomicProcess"/>
+        <service:presents rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#Profile"/>
+    </owl:NamedIndividual>
+        
+   
+
+    <!-- http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#_EFFRULE -->
+
+    <owl:NamedIndividual rdf:about="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#_EFFRULE"/>
+    
+
+
+    <!-- http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#_PRERULE -->
+
+    <owl:NamedIndividual rdf:about="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#_PRERULE"/>
+    
+    
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+	 
+	<rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <rdf:conditionAnnotation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#_EFFRULE1</rdf:conditionAnnotation>
+        <swrl:head rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:argument1 rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#RequestParameters"/>
+                        <swrl:argument2 rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#SomeFlightCategory"/>
+                        <swrl:propertyPredicate rdf:resource="http://127.0.0.1/health-scallops/ontology/Health-Scallops_Ontology.owl#hasCategory"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+	 
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <rdf:conditionAnnotation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#_EFFRULE2</rdf:conditionAnnotation>
+        <swrl:head rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:argument1 rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#RequestParameters"/>
+                        <swrl:argument2 rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#ArrivalTime"/>
+                        <swrl:propertyPredicate rdf:resource="http://127.0.0.1/health-scallops/ontology/Health-Scallops_Ontology.owl#hasArrivalTime"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+	 
+	 
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <rdf:conditionAnnotation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#_EFFRULE3</rdf:conditionAnnotation>
+        <swrl:head rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:argument1 rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#RequestParameters"/>
+                        <swrl:argument2 rdf:resource="http://127.0.0.1/health-scallops/services/1.2/RequestFlight2.owl#DepartureTime"/>
+                        <swrl:propertyPredicate rdf:resource="http://127.0.0.1/health-scallops/ontology/Health-Scallops_Ontology.owl#hasDepartureTime"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+	
+	
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.10-SNAPSHOT) http://owlapi.sourceforge.net -->
+

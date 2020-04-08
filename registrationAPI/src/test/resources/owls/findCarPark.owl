@@ -1,0 +1,193 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#"
+     xml:base="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls"
+     xmlns:process="http://www.daml.org/services/owl-s/1.2/Process.owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:service="http://www.daml.org/services/owl-s/1.2/Service.owl#"
+     xmlns:profile="http://www.daml.org/services/owl-s/1.2/Profile.owl#"
+     xmlns:swrlb="http://www.w3.org/2003/11/swrlb#"
+     xmlns:swrl="http://www.w3.org/2003/11/swrl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:grounding="http://www.daml.org/services/owl-s/1.2/Grounding.owl#"
+	 xmlns:sco="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl#">
+    <owl:Ontology rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls">
+        <owl:imports rdf:resource="http://130.149.154.120:8080/emd/CommonDomainModel/CommonDomainModel.location.owl"/>
+        <owl:imports rdf:resource="http://130.149.154.120:8080/emd/CommonDomainModel/parking.owl"/>
+        <owl:imports rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo/CDMISCOMerger.owl"/>
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Grounding.owl"/>
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl"/>
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Profile.owl"/>
+        <owl:imports rdf:resource="http://www.daml.org/services/owl-s/1.2/Service.owl"/>
+		<owl:imports rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl"/>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Annotation properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/1999/02/22-rdf-syntax-ns#conditionAnnotation -->
+
+    <owl:AnnotationProperty rdf:about="http://www.w3.org/1999/02/22-rdf-syntax-ns#conditionAnnotation"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/CDMISCOMerger.owl#isNearest -->
+
+    <owl:ObjectProperty rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/CDMISCOMerger.owl#isNearest"/>
+    
+	
+	<!-- http://130.149.154.120:8080/emd/CommonDomainModel/CommonDomainModel.location.owl#geoLocation -->
+
+    <owl:ObjectProperty rdf:about="http://130.149.154.120:8080/emd/CommonDomainModel/CommonDomainModel.location.owl#geoLocation"/>
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#_EFFRULE -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#_EFFRULE"/>
+	
+	<!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#_PRERULE -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#_PRERULE"/>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#findCarPark -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#findCarPark">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Service.owl#Service"/>
+		<rdf:type rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl#Service"/>
+        <rdf:type rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl#SmartCityObject"/>
+        <service:describedBy rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#_process"/>
+        <service:presents rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#_profile"/>
+		<sco:hasDomain rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/smart_city_objects.owl#Living"/>
+		<process:hasEffect rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#_EFFRULE"/>
+        <process:hasPrecondition rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#_PRERULE"/>
+        <process:hasInput rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#input_location"/>
+        <process:hasInput rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#input_car"/>
+        <process:hasOutput rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#output_carpark"/>
+		<profile:textDescription>Finds the car park nearest to a specific location.</profile:textDescription>
+        <profile:serviceName>findCarPark</profile:serviceName>
+    </owl:NamedIndividual>
+    
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#input_car -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#input_car">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#Input"/>
+        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://130.149.154.120:8080/emd/CommonDomainModel/CommonDomainModel.vehicle.owl#ElectricCar</process:parameterType>
+    </owl:NamedIndividual>
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#input_location -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#input_location">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#Input"/>
+        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://130.149.154.120:8080/emd/CommonDomainModel/CommonDomainModel.location.owl#GeoLocation</process:parameterType>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#output_carpark -->
+
+    <owl:NamedIndividual rdf:about="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#output_carpark">
+        <rdf:type rdf:resource="http://www.daml.org/services/owl-s/1.2/Process.owl#Output"/>
+        <process:parameterType rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">http://130.149.154.120:8080/emd/CommonDomainModel/parking.owl#CarPark</process:parameterType>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Rules
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+	<rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <rdf:conditionAnnotation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#_PRERULE</rdf:conditionAnnotation>
+        <swrl:head rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <swrl:body>		
+			<rdf:Description>			
+				<rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>                
+				<rdf:first>
+					<rdf:Description>
+						<rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+						<swrl:propertyPredicate rdf:resource="http://130.149.154.120:8080/emd/CommonDomainModel/CommonDomainModel.location.owl#geoLocation"/>
+						<swrl:argument1 rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#input_car"/>
+						<swrl:argument2 rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#input_location"/>
+					</rdf:Description>
+                </rdf:first>				
+		   </rdf:Description>			
+        </swrl:body>
+    </rdf:Description>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#Imp"/>
+        <rdf:conditionAnnotation rdf:datatype="http://www.w3.org/2001/XMLSchema#string">http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#_EFFRULE</rdf:conditionAnnotation>
+        <swrl:head rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+        <swrl:body>
+            <rdf:Description>
+                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                <rdf:rest>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#AtomList"/>
+                        <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+                        <rdf:first>
+                            <rdf:Description>
+                                <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                                <swrl:propertyPredicate rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/CDMISCOMerger.owl#isNearest"/>
+                                <swrl:argument1 rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#input_location"/>
+                                <swrl:argument2 rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#output_carpark"/>
+                            </rdf:Description>
+                        </rdf:first>
+                    </rdf:Description>					
+                </rdf:rest>
+                <rdf:first>
+                    <rdf:Description>
+                        <rdf:type rdf:resource="http://www.w3.org/2003/11/swrl#IndividualPropertyAtom"/>
+                        <swrl:propertyPredicate rdf:resource="http://130.149.154.120:8080/emd/CommonDomainModel/CommonDomainModel.location.owl#geoLocation"/>
+                        <swrl:argument2 rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#input_location"/>
+                        <swrl:argument1 rdf:resource="http://isco-dev.aot.tu-berlin.de/ontologies/examples/demo_v2/services/findCarPark.owls#output_carpark"/>
+                    </rdf:Description>
+                </rdf:first>
+            </rdf:Description>
+        </swrl:body>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.5.0) http://owlapi.sourceforge.net -->
+
