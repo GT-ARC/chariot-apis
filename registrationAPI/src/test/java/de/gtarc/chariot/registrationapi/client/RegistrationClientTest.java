@@ -26,11 +26,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import static org.junit.Assert.assertEquals;
-
+@Ignore
 public class RegistrationClientTest {
 
     String host = "tcp://130.149.232.235:1083";
-    //String host = "tcp://localhost:1883";
+    //String mqttHostURL = "tcp://localhost:1883";
     String username = "plbwvpgf";
     String password = "mJTPb6z12Bag";
     String clientId = "ClientRegistrationTest";

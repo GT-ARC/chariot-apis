@@ -27,48 +27,48 @@ public interface MQTTRegistration {
     <T> void updateProperty(T property);
 
     /**
-     * Getter for the host
+     * Getter for the mqttHostURL
      *
      * @return
      */
-    public String getHost();
+    public String getMqttHostURL();
 
     /**
-     * Setter for the host
+     * Setter for the mqttHostURL
      *
      * @param Host
      */
-    public void setHost(String Host);
+    public void setMqttHostURL(String Host);
 
     /**
-     * Getter for the username
+     * Getter for the mqttUsername
      *
      * @return
      */
-    public String getUsername();
+    public String getMqttUsername();
 
     /**
-     * Setter for the username
+     * Setter for the mqttUsername
      *
      * @param Username
      */
-    public void setUsername(String Username);
+    public void setMqttUsername(String Username);
 
     /**
-     * Getter for the password
+     * Getter for the mqttPassword
      *
      * @return
      */
-    public String getPassword();
+    public String getMqttPassword();
 
     /**
-     * Setter for the password
+     * Setter for the mqttPassword
      *
      * @param Password
      */
-    public void setPassword(String Password);
+    public void setMqttPassword(String Password);
 
-    public String getClientId();
+    public String getMqttClientId();
 
-    public void setClientId(String clientId);
+    public void setMqttClientId(String clientId);
 }

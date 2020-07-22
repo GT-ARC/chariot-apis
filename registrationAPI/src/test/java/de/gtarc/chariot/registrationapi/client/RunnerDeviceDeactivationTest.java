@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import static org.junit.Assert.*;
-
+@Ignore
 public class RunnerDeviceDeactivationTest {
 
     String host = "tcp://130.149.232.235:1083";

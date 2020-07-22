@@ -4,6 +4,7 @@ import de.gtarc.chariot.connectionapi.ConnectionException;
 import de.gtarc.chariot.connectionapi.ConnectionStatus;
 import de.gtarc.chariot.connectionapi.DeviceConnection;
 import org.eclipse.jetty.util.component.LifeCycle;
+import org.eclipse.jetty.websocket.client.WebSocketClient;
 
 import javax.websocket.ContainerProvider;
 import javax.websocket.Session;
@@ -14,6 +15,7 @@ import java.net.URI;
 public class WebSocketClientImpl extends AbstractConnectionImpl implements DeviceConnection {
 
     Class<?> WSClientSocketClass;
+    WebSocketClient WSClientSocketObject;
 
     private URI uri;
     private Session session;
@@ -21,6 +23,10 @@ public class WebSocketClientImpl extends AbstractConnectionImpl implements Devic
 
     public WebSocketClientImpl(Class<?> WSClientSocketClass) {
         this.WSClientSocketClass = WSClientSocketClass;
+    }
+
+    public WebSocketClientImpl(WebSocketClient WSClientSocketObject) {
+        this.WSClientSocketObject = WSClientSocketObject;
     }
 
     public void setConnectionURI(String url) {
@@ -35,8 +41,10 @@ public class WebSocketClientImpl extends AbstractConnectionImpl implements Devic
         if (session == null) {
             try {
                 container = ContainerProvider.getWebSocketContainer();
-                session = container.connectToServer(WSClientSocketClass, uri);
-
+                if(WSClientSocketObject != null)
+                    session = container.connectToServer(WSClientSocketObject, uri);
+                else
+                    session = container.connectToServer(WSClientSocketClass, uri);
             } catch (Throwable t) {
                 t.printStackTrace(System.err);
             }

@@ -1,11 +1,8 @@
 package de.gtarc.chariot.registrationapi.agents;
 
 import de.gtarc.chariot.connectionapi.*;
-import de.gtarc.chariot.dbhandlerapi.impl.KmsHandlerImpl;
 import de.gtarc.chariot.messageapi.AbstractMessage;
-import de.gtarc.chariot.messageapi.AbstractPayload;
-import de.gtarc.chariot.messageapi.IMessage;
-import de.gtarc.chariot.messageapi.impl.MessageBuilder;
+import de.gtarc.chariot.messageapi.PayloadEntityAttribute;
 import de.gtarc.chariot.messageapi.payload.PayloadEntityProperty;
 import de.gtarc.chariot.registrationapi.client.RegistrationClient;
 import de.gtarc.chariot.registrationapi.client.util.ClientResult;
@@ -15,15 +12,12 @@ import de.gtarc.chariot.serviceapi.ServiceProperty;
 import de.gtarc.commonapi.Entity;
 import de.gtarc.commonapi.utils.IoTEntity;
 
-import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-public class ServiceAgent extends IoTEntityExposingBean {
+public abstract class ServiceAgent extends IoTEntityExposingBean {
 
-
-    private String clientID = "ServiceClientID";
     private Service service;
     private Connection conn; 
 
@@ -32,15 +26,10 @@ public class ServiceAgent extends IoTEntityExposingBean {
 
         this.setAgentActionsAsOperations();
         this.configureDatabaseConnection("/services/");
-
-        this.conn = getMqttConnect(getHost(), getUsername(), getPassword(), clientID);
+        this.mqttClientId = this.entity.getUUIdentifier().toString();
+        this.conn = getMqttConnect(getMqttHostURL(), getMqttUsername(), getMqttPassword(), getMqttClientId());
         this.service.setConnectionHandler((ServiceConnection)this.conn);
 
-        try {
-            this.kmsHandler = new KmsHandlerImpl("http://chariot-km.dai-lab.de:8080/v1", "/services/");
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
         Future<RegistrationResult> result = registrationHandler
                 .registerEntity(
                 		conn,
@@ -58,7 +47,7 @@ public class ServiceAgent extends IoTEntityExposingBean {
     }
 
     public void setEntity(Entity entity) throws Exception {
-        this.entity = entity;
+        super.setEntity(entity);
         if (!(this.entity instanceof Service))
             throw new Exception("Service Agent can only register services");
         this.service = (Service) entity;
@@ -89,20 +78,34 @@ public class ServiceAgent extends IoTEntityExposingBean {
     @Override
     public <T> void updateProperty(T property) {
         ServiceProperty serviceProperty = (ServiceProperty) property;
-//        configureDatabaseConnection("services/" + service.getUUIdentifier().toString() + "/" + serviceProperty.getKey() + "/");
         kmsHandler.updateEntityProperty(service.getUUIdentifier().toString(),
                 new PayloadEntityProperty(
                         new Date().getTime(),
-                        IoTEntity.SERVICE_OBJECTTYPE,
-                        serviceProperty.getKey(),
-                        serviceProperty.getUnit(),
+                        IoTEntity.SERVICE,
                         serviceProperty.getType(),
-                        serviceProperty.getValue(),
-                        serviceProperty.getRelatedTo(),
-                        serviceProperty.getOperation()
+                        serviceProperty.getKey(),
+                        serviceProperty.getValue()
                 ));
     }
 
+    /**
+     * Update service data in the database
+     * @param key
+     * @param value
+     */
+    public void updateProperty(String key, Object value) {
+        service.getProperties().stream().filter(i -> i.getKey().equals(key)).findFirst().ifPresent(i -> {
+            ((ServiceProperty) i).setValue(value);
+            updateProperty(i);
+        });
+    }
+    //TODO: What else could be updated in a service?
+    public void updateEntityAttribute(String key, Object value) {
+        if (service.getName().equals(key)){
+            service.setName(value.toString());
+        }
+        kmsHandler.updateEntityAttribute(service.getUUIdentifier().toString(), new PayloadEntityAttribute(service.getType(), key,value));
+    }
     public Service getService() {
         return this.service;
     }

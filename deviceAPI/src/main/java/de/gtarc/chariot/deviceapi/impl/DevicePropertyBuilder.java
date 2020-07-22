@@ -7,8 +7,8 @@ public class DevicePropertyBuilder {
     protected Object value;
     protected String unit;
     protected boolean writable;
-    protected String min;
-    protected String max;
+    protected Double min;
+    protected Double max;
 
     public DevicePropertyImpl buildDeviceProperty() {
         DevicePropertyImpl deviceProperty = new DevicePropertyImpl();
@@ -60,12 +60,12 @@ public class DevicePropertyBuilder {
         return this;
     }
 
-    public DevicePropertyBuilder setMin(String min) {
+    public DevicePropertyBuilder setMin(Double min) {
         this.min = min;
         return this;
     }
 
-    public DevicePropertyBuilder setMax(String max) {
+    public DevicePropertyBuilder setMax(Double max) {
         this.max = max;
         return this;
     }

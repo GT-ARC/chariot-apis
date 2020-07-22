@@ -2,7 +2,7 @@
 
 ##How to create a human?
 
-A device can be created using HumanBuilder(). After the properties are set, build() method
+A human can be created using HumanBuilder(). After the properties are set, build() method
 will be called. An example can be found here:
 
     Human human = new HumanBuilder()

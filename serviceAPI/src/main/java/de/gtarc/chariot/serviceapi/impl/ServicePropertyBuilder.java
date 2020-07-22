@@ -13,8 +13,8 @@ public class ServicePropertyBuilder {
     protected Object value;
     protected String unit;
     protected boolean writable;
-    protected String min;
-    protected String max;
+    protected Double min;
+    protected Double max;
     protected List<String> relatedTo;
     private ServiceConnection serviceConnection;
 
@@ -78,12 +78,12 @@ public class ServicePropertyBuilder {
         return this;
     }
 
-    public ServicePropertyBuilder setMin(String min) {
+    public ServicePropertyBuilder setMin(Double min) {
         this.min = min;
         return this;
     }
 
-    public ServicePropertyBuilder setMax(String max) {
+    public ServicePropertyBuilder setMax(Double max) {
         this.max = max;
         return this;
     }

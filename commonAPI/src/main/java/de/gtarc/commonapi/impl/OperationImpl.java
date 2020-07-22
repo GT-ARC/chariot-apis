@@ -33,22 +33,10 @@ public class OperationImpl implements Operation {
         this.outputs = newOutput;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
     public void setName(String newName) {
         this.name = newName;
     }
@@ -60,22 +48,10 @@ public class OperationImpl implements Operation {
 
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
     public Object getInputs() {
         return inputs;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
     public void setInputs(Object... inputs) {
         if (inputs != null) {
             this.inputs = inputs;
@@ -83,22 +59,11 @@ public class OperationImpl implements Operation {
 
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
     public Object[] getOutputs() {
         return outputs;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
+
     public void setOutputs(Object... outputs) {
         if (outputs != null) {
             this.outputs = outputs;
@@ -106,13 +71,6 @@ public class OperationImpl implements Operation {
 
     }
 
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
     @Override
     public String toString() {
 

@@ -25,7 +25,7 @@ public class PayloadEntity extends AbstractPayload {
 
     Property[] properties;
     Operation[] operations;
-
+    public PayloadEntity(){}
     public PayloadEntity(String oType, String uuid, String id, String name, String securitykey, String reId,
                          String ip, String groupId, String manufacturer, Location location, Property[] properties) {
         this.objectType = oType;

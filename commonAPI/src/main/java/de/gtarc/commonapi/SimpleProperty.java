@@ -4,42 +4,21 @@
 package de.gtarc.commonapi;
 
 
-public interface SimpleProperty extends Property {
-    /**
-     *
-     * @return
-     */
+public interface SimpleProperty extends Property<Object> {
+
     Object getValue();
 
-    /**
-     *
-     * @param value
-     */
+
     void setValue(Object value);
 
-    /**
-     *
-     * @return
-     */
-    String getUnit();
 
-    /**
-     *
-     * @param value
-     */
-    void setUnit(String unit);
+    Double getMin();
 
-    /**
-     *
-     * @return
-     */
-    String getType();
+    void setMin(Double min);
 
-    /**
-     *
-     * @param value
-     */
-    void setType(String type);
+    Double getMax();
+
+    void setMax(Double max);
 
 
 } // SimpleProperty

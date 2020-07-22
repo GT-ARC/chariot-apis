@@ -24,7 +24,7 @@ import static org.junit.Assert.assertEquals;
 @Ignore
 public class MessageTest {
 
-    @Test
+    @Ignore
     public void createRegistrationMessage() {
 
 

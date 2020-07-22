@@ -3,7 +3,7 @@ package de.gtarc.chariot.dbhandlerapi.impl;
 import de.gtarc.chariot.dbhandlerapi.DummyDbHandler;
 import de.gtarc.chariot.deviceapi.impl.DevicePropertyImpl;
 import de.gtarc.chariot.messageapi.AbstractPayload;
-import de.gtarc.chariot.messageapi.PayloadProperty;
+import de.gtarc.chariot.messageapi.PayloadEntityAttribute;
 import de.gtarc.chariot.messageapi.PayloadPropertyAttribute;
 import de.gtarc.chariot.messageapi.payload.*;
 import de.gtarc.commonapi.Property;
@@ -39,7 +39,7 @@ public class DummyDbHandlerImpl implements DummyDbHandler {
     }
 
     @Override
-    public void updateEntityAttribute(String entityId, PayloadProperty payload) {
+    public void updateEntityAttribute(String entityId, PayloadEntityAttribute payload) {
 
     }
 
@@ -49,7 +49,7 @@ public class DummyDbHandlerImpl implements DummyDbHandler {
     }
 
     @Override
-    public void updateLocation(String entityId, String otype, PayloadProperty payload) {
+    public void updateLocation(String entityId, String otype, PayloadEntityAttribute payload) {
 
     }
 
@@ -62,6 +62,11 @@ public class DummyDbHandlerImpl implements DummyDbHandler {
             e.printStackTrace();
         }
         return "SUCCESS";
+    }
+
+    @Override
+    public String addEntity(PayloadEntity payload) {
+        return null;
     }
 
 

@@ -1,27 +1,16 @@
 package de.gtarc.chariot.registrationapi.agents;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.gtarc.chariot.api.jiacbinding.annotations.UseServiceOWLFile;
+//import com.gtarc.chariot.api.jiacbinding.annotations.UseServiceOWLFile;
 import de.dailab.jiactng.agentcore.SimpleAgentNode;
 import de.dailab.jiactng.agentcore.action.scope.ActionScope;
 import de.dailab.jiactng.agentcore.lifecycle.LifecycleException;
-import de.gtarc.chariot.connectionapi.*;
-import de.gtarc.chariot.deviceapi.Device;
 import de.gtarc.chariot.deviceapi.DeviceProperty;
 import de.gtarc.chariot.deviceapi.impl.DeviceBuilder;
 import de.gtarc.chariot.deviceapi.impl.DevicePropertyBuilder;
-import de.gtarc.chariot.messageapi.AbstractMessage;
-import de.gtarc.chariot.messageapi.AbstractPayload;
-import de.gtarc.chariot.messageapi.IMessage;
-import de.gtarc.chariot.messageapi.impl.MessageBuilder;
-import de.gtarc.chariot.messageapi.impl.PayloadResponse;
-import de.gtarc.chariot.messageapi.payload.PayloadEntity;
 import de.gtarc.chariot.messageapi.payload.PayloadEntityProperty;
 import de.gtarc.commonapi.utils.Indoorposition;
-import de.gtarc.commonapi.utils.IoTEntity;
 import de.gtarc.commonapi.utils.Location;
 import de.gtarc.commonapi.utils.Position;
 import org.springframework.context.ApplicationContext;
@@ -62,12 +51,12 @@ public class DeviceAgentExample extends DeviceAgent  {
         this.register();
     }
 
-    @UseServiceOWLFile(filename = "owls/chariot_service_clear.owl")
-    @Expose(name = ACTION_NAME_2, scope = ActionScope.GLOBAL)
-    public void myUpdateEntity() {
-        // Push updated value in db
-        updateEntity();
-    }
+//    @UseServiceOWLFile(filename = "owls/chariot_service_clear.owl")
+//    @Expose(name = ACTION_NAME_2, scope = ActionScope.GLOBAL)
+//    public void myUpdateEntity() {
+//        // Push updated value in db
+//        updateEntity();
+//    }
 
     @Override
     @Expose(name = PROPERTY_ACTION, scope = ActionScope.GLOBAL)

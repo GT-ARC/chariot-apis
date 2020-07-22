@@ -2,6 +2,7 @@ package de.gtarc.util;
 
 import de.gtarc.chariot.deviceapi.impl.DevicePropertyImpl;
 import de.gtarc.commonapi.Property;
+import de.gtarc.commonapi.SimpleProperty;
 import de.gtarc.commonapi.impl.ComplexPropertyImpl;
 import de.gtarc.commonapi.impl.SimplePropertyImpl;
 
@@ -20,8 +21,8 @@ public class PropertyBuilder {
 
     /* Device Property Only */
     protected boolean writable;
-    protected String min;
-    protected String max;
+    protected Double min;
+    protected Double max;
 
     /* Complex Property */
     List<Property> subProperties = new ArrayList<Property>();
@@ -71,20 +72,20 @@ public class PropertyBuilder {
         return this;
     }
 
-    public String getMin() {
+    public Double getMin() {
         return min;
     }
 
-    public PropertyBuilder setMin(String min) {
+    public PropertyBuilder setMin(Double min) {
         this.min = min;
         return this;
     }
 
-    public String getMax() {
+    public Double getMax() {
         return max;
     }
 
-    public PropertyBuilder setMax(String max) {
+    public PropertyBuilder setMax(Double max) {
         this.max = max;
         return this;
     }
@@ -102,7 +103,7 @@ public class PropertyBuilder {
         Property property;
 
         if (subProperties.isEmpty()) {
-            if (min != null || max != null) {
+            if (!Double.isNaN(min) || !Double.isNaN(max)) {
                 property = new DevicePropertyImpl();
                 ((DevicePropertyImpl) property).setMin(this.min);
                 ((DevicePropertyImpl) property).setMax(this.max);
@@ -119,7 +120,7 @@ public class PropertyBuilder {
         } else {
             property = new ComplexPropertyImpl();
             Property finalProperty = property;
-            this.subProperties.forEach(p -> ((ComplexPropertyImpl) finalProperty).addSubProperty(p));
+            this.subProperties.forEach(p -> ((ComplexPropertyImpl) finalProperty).addSubProperty((SimpleProperty) p));
         }
 
         property.setKey(this.key);

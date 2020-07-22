@@ -11,10 +11,11 @@ import de.gtarc.commonapi.utils.Indoorposition;
 import de.gtarc.commonapi.utils.Location;
 import de.gtarc.commonapi.utils.Position;
 import de.gtarc.util.PropertyBuilder;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-
+@Ignore
 public class RegisterRunnerTest {
 
     @Test

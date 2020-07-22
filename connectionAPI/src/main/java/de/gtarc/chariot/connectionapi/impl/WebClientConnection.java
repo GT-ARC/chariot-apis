@@ -1,19 +1,23 @@
 package de.gtarc.chariot.connectionapi.impl;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import de.gtarc.chariot.connectionapi.ConnectionStatus;
 import de.gtarc.chariot.connectionapi.DeviceConnection;
 import de.gtarc.chariot.connectionapi.URIBasedConnection;
+import okhttp3.MediaType;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpDelete;
 import org.apache.http.client.methods.HttpPatch;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
+import org.apache.http.impl.client.*;
 import org.apache.http.util.EntityUtils;
 import org.eclipse.jetty.client.HttpClient;
 import org.eclipse.jetty.client.api.ContentResponse;
@@ -27,11 +31,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
@@ -53,6 +59,8 @@ public class WebClientConnection extends AbstractConnectionImpl implements Devic
 //		client.connect();
 //		client.sendByGet(client.getConnectionURI()+"hello/");
 //	}
+
+    private static final Logger log = Logger.getLogger(WebClientConnection.class);
 
     private URI uri;
     HttpClient client = null;
@@ -89,7 +97,7 @@ public class WebClientConnection extends AbstractConnectionImpl implements Devic
 
     @Override
     public void connect() {
-        //log.debug("Connecting ... isConnected = " +isConnected());
+        //log.info("Connecting ... isConnected = " +isConnected());
         setStatus(ConnectionStatus.CONNECTING);
 
         if (!isConnected()) {
@@ -103,14 +111,14 @@ public class WebClientConnection extends AbstractConnectionImpl implements Devic
                 }
                 setStatus(ConnectionStatus.CONNECTED);
             } catch (Exception e) {
-                //log.debug("Connection Exception");
+                //log.info("Connection Exception");
             }
         }
     }
 
     @Override
     public void disconnect() {
-        //log.debug("Disconnecting ... isConnected = " +isConnected());
+        //log.info("Disconnecting ... isConnected = " +isConnected());
         setStatus(ConnectionStatus.DISCONNECTING);
         if (isConnected()) {
             try {
@@ -141,7 +149,7 @@ public class WebClientConnection extends AbstractConnectionImpl implements Devic
         multiPart.addFilePart("file", fileName, new BytesContentProvider(content.getBytes(Charset.defaultCharset())), null);
         multiPart.close();
 
-        System.out.println("Upload file {" + fileName + "}" + " to " + url);
+        log.info("Upload file {" + fileName + "}" + " to " + url);
 
         ContentResponse response = null;
         try {
@@ -187,17 +195,15 @@ public class WebClientConnection extends AbstractConnectionImpl implements Devic
 
         try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
             HttpDelete httpDelete = new HttpDelete(url);
-            System.out.println("Executing request " + httpDelete.getRequestLine());
-            ResponseHandler<String> responseHandler = new ResponseHandler<String>() {
-                @Override
-                public String handleResponse(HttpResponse httpResponse) throws ClientProtocolException, IOException {
-                    int status = httpResponse.getStatusLine().getStatusCode();
-                    if (status >= 200 && status < 300) {
-                        HttpEntity entity = httpResponse.getEntity();
-                        return entity != null ? EntityUtils.toString(entity) : null;
-                    } else {
-                        throw new ClientProtocolException("Unexpected response status: " + status);
-                    }
+
+            log.info("Executing request " + httpDelete.getRequestLine());
+            ResponseHandler<String> responseHandler = httpResponse -> {
+                int status = httpResponse.getStatusLine().getStatusCode();
+                if (status >= 200 && status < 300) {
+                    HttpEntity entity = httpResponse.getEntity();
+                    return entity != null ? EntityUtils.toString(entity) : null;
+                } else {
+                    throw new ClientProtocolException("Unexpected response status: " + status);
                 }
             };
             String responseBody = httpclient.execute(httpDelete, responseHandler);
@@ -220,23 +226,20 @@ public class WebClientConnection extends AbstractConnectionImpl implements Devic
             StringEntity stringEntity = new StringEntity(json);
             httpPut.setEntity(stringEntity);
 
-            System.out.println("Executing request " + httpPut.getRequestLine());
+            log.info("Executing request " + httpPut.getRequestLine());
 
-            ResponseHandler<String> responseHandler = new ResponseHandler<String>() {
-                @Override
-                public String handleResponse(HttpResponse httpResponse) throws ClientProtocolException, IOException {
-                    int status = httpResponse.getStatusLine().getStatusCode();
-                    if (status >= 200 && status < 300) {
-                        HttpEntity entity = httpResponse.getEntity();
-                        return entity != null ? EntityUtils.toString(entity) : null;
-                    } else {
-                        throw new ClientProtocolException("Unexpected response status: " + status);
-                    }
+            ResponseHandler<String> responseHandler = httpResponse -> {
+                int status = httpResponse.getStatusLine().getStatusCode();
+                if (status >= 200 && status < 300) {
+                    HttpEntity entity = httpResponse.getEntity();
+                    return entity != null ? EntityUtils.toString(entity) : null;
+                } else {
+                    throw new ClientProtocolException("Unexpected response status: " + status);
+
                 }
             };
             String responseBody = httpclient.execute(httpPut, responseHandler);
-            System.out.println("----------------------------------------");
-            System.out.println(responseBody);
+
             return responseBody;
         } catch (IOException e) {
             e.printStackTrace();
@@ -257,21 +260,18 @@ public class WebClientConnection extends AbstractConnectionImpl implements Devic
 
             System.out.println("Executing request " + httpPatch.getRequestLine());
 
-            ResponseHandler<String> responseHandler = new ResponseHandler<String>() {
-                @Override
-                public String handleResponse(HttpResponse httpResponse) throws ClientProtocolException, IOException {
-                    int status = httpResponse.getStatusLine().getStatusCode();
-                    if (status >= 200 && status < 300) {
-                        HttpEntity entity = httpResponse.getEntity();
-                        return entity != null ? EntityUtils.toString(entity) : null;
-                    } else {
-                        throw new ClientProtocolException("Unexpected response status: " + status);
-                    }
+            ResponseHandler<String> responseHandler = httpResponse -> {
+                int status = httpResponse.getStatusLine().getStatusCode();
+                if (status >= 200 && status < 300) {
+                    HttpEntity entity = httpResponse.getEntity();
+                    return entity != null ? EntityUtils.toString(entity) : null;
+                } else {
+                    throw new ClientProtocolException("Unexpected response status: " + status);
                 }
             };
             String responseBody = httpclient.execute(httpPatch, responseHandler);
-            System.out.println("----------------------------------------");
-            System.out.println(responseBody);
+            log.info("----------------------------------------");
+            log.info(responseBody);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -333,7 +333,7 @@ public class WebClientConnection extends AbstractConnectionImpl implements Devic
             response = client.newRequest(url).method(HttpMethod.POST)
                     .content(new StringContentProvider(content), "application/json")
                     .send();
-            System.out.println("Request completed" + response.getContentAsString());
+            log.info("Request completed" + response.getContentAsString());
         } catch (InterruptedException e1) {
             e1.printStackTrace();
         } catch (ExecutionException e1) {

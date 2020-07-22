@@ -2,11 +2,12 @@ package de.gtarc.chariot.deviceapi.impl;
 
 import de.gtarc.chariot.deviceapi.Device;
 import de.gtarc.commonapi.impl.OperationImpl;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class DeviceTest {
 
-    @Test
+    @Ignore
     public void deviceBuilderTest() {
         Device device = new DeviceBuilder()
                 .addOperation(

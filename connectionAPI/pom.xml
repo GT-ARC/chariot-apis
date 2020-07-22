@@ -5,7 +5,7 @@
     <parent>
         <groupId>de.gtarc.chariot</groupId>
         <artifactId>chariot</artifactId>
-        <version>0.1.4</version>
+        <version>0.1.7</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <artifactId>connectionAPI</artifactId>
@@ -66,7 +66,7 @@
         <dependency>
             <groupId>org.eclipse.paho</groupId>
             <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
-            <version>1.2.1</version>
+            <version>1.2.0</version>
         </dependency>
         <dependency>
             <groupId>javax.websocket</groupId>
@@ -102,6 +102,12 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>4.5.10</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.9</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

@@ -16,6 +16,9 @@ public class HumanPropertyImpl implements HumanProperty {
 
     private static final boolean WRITABLE_EDEFAULT = false;
 
+    private static final Double MIN_DEFAULT = 0.0;
+
+    private static final Double MAX_DEFAULT = 0.0;
 
     protected long timestamp = TIMESTAMP_EDEFAULT;
 
@@ -28,6 +31,9 @@ public class HumanPropertyImpl implements HumanProperty {
     protected String unit = UNIT_EDEFAULT;
 
     protected boolean writable = WRITABLE_EDEFAULT;
+
+    protected Double min = MIN_DEFAULT;
+    protected Double max = MAX_DEFAULT;
 
     public HumanPropertyImpl() {
         super();
@@ -45,7 +51,7 @@ public class HumanPropertyImpl implements HumanProperty {
     public HumanPropertyImpl(String key, Object value, long timestamp) {
         this.key = key;
         this.value = value;
-        this.setTimestamp(timestamp);
+        this.timestamp = timestamp;
     }
 
     @Override
@@ -106,27 +112,23 @@ public class HumanPropertyImpl implements HumanProperty {
     }
 
     @Override
-    public String getMin() {
-        // TODO Auto-generated method stub
-        return null;
+    public Double getMin() {
+        return min;
     }
 
     @Override
-    public void setMin(String min) {
-        // TODO Auto-generated method stub
-
+    public void setMin(Double min) {
+        this.min = min;
     }
 
     @Override
-    public String getMax() {
-        // TODO Auto-generated method stub
-        return null;
+    public Double getMax() {
+        return max;
     }
 
     @Override
-    public void setMax(String max) {
-        // TODO Auto-generated method stub
-
+    public void setMax(Double max) {
+        this.max = max;
     }
 
 }

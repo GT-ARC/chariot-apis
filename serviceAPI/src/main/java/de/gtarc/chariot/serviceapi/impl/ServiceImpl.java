@@ -167,22 +167,12 @@ public class ServiceImpl extends AbstractService {
         return this.properties;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
+
     public ServiceConnection getConnectionHandler() {
         return handler;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @generated
-     */
+
     public void setConnectionHandler(ServiceConnection newHandler) {
         handler = newHandler;
     }

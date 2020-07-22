@@ -349,13 +349,16 @@ public class HumanImpl implements Human {
 
     @Override
     public void addOperation(Operation operation) {
-        this.addOperation(operation);
-
+        if (this.operations != null) {
+            if (!this.operations.contains(operation)) {
+                this.operations.add(operation);
+            }
+        }
     }
 
     @Override
     public List<Operation> getOperations() {
-        return null;
+        return operations;
     }
 
     @Override

@@ -21,42 +21,12 @@ public interface XConnection extends Connection {
      */
     ConnectionListener getConnectionListener();
 
-    /**
-     * Sets the value of the '{@link chariot.device.model.connection.api.connection.DeviceConnection#getConnectionListener <em>Connection Listener</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Connection Listener</em>' containment reference.
-     * @see #getConnectionListener()
-     *
-     */
+
     void setConnectionListener(ConnectionListener value);
 
-    /**
-     * Returns the value of the '<em><b>Status</b></em>' attribute.
-     * The default value is <code>"UNDEFINED"</code>.
-     * The literals are from the enumeration {@link deviceapi.connection.ConnectionStatus}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Status</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Status</em>' attribute.
-     * @see deviceapi.connection.ConnectionStatus
-     * @see #setStatus(ConnectionStatus)
-     *
-     */
     ConnectionStatus getStatus();
 
-    /**
-     * Sets the value of the '{@link chariot.device.model.connection.api.connection.DeviceConnection#getStatus <em>Status</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Status</em>' attribute.
-     * @see deviceapi.connection.ConnectionStatus
-     * @see #getStatus()
-     *
-     */
+
     void setStatus(ConnectionStatus value);
 
     /**

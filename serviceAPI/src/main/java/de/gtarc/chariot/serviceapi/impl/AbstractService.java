@@ -12,32 +12,13 @@ import de.gtarc.chariot.serviceapi.Service;
  */
 public abstract class AbstractService implements Service {
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
+
     public abstract void start();
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public abstract void run();
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public abstract void stop();
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public abstract boolean isRunning();
 
 

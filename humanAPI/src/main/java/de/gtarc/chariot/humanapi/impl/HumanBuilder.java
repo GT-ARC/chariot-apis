@@ -12,17 +12,17 @@ import java.util.UUID;
 
 public class HumanBuilder {
 
-
     private UUID uuid;
     private String name;
 
     private Location location;
     private Connection connection;
-    private String securitykey;
+    private String securityKey;
     private String ip;
     private String reId;
     private String vendor;
     private String platform;
+    private String type;
 
     private UUID account;
     private UUID healthData;
@@ -42,9 +42,12 @@ public class HumanBuilder {
         this.uuid = uuid;
         return this;
     }
-
-    public HumanBuilder setSecuritykey(String securitykey) {
-        this.securitykey = securitykey;
+    public HumanBuilder setType(String type) {
+        this.type = type;
+        return this;
+    }
+    public HumanBuilder setSecurityKey(String securityKey) {
+        this.securityKey = securityKey;
         return this;
     }
 
@@ -161,10 +164,11 @@ public class HumanBuilder {
         human.setName(this.name);
         human.setReId(this.reId);
         human.setIp(this.ip);
-        human.setSecurityKey(this.securitykey);
+        human.setSecurityKey(this.securityKey);
         human.setPlatform(this.platform);
         human.setVendor(this.vendor);
         human.setLocation(this.location);
+        human.setType(this.type);
 
         properties.forEach(human::addProperty);
         operations.forEach(human::addOperation);
@@ -199,17 +203,7 @@ public class HumanBuilder {
         if (this.humanRoles.size() > 0) {
             human.addProperty(new HumanPropertyImpl(timestamp,"humanRoles", "array", this.humanRoles.toArray(), "", true));
         }
-        // add properties
-//
-        human.setAccount(this.account);
-        human.setHealthData(this.healthData);
-        human.setPreferences(this.preferences);
-        human.setActions(this.actions);
-        human.setTasks(this.tasks);
-        human.setSkills(this.skills);
-        human.setPermissions(this.permissions);
-        human.setProperties(this.properties);
-        human.setHumanRoles(this.humanRoles);
+
         return human;
     }
 

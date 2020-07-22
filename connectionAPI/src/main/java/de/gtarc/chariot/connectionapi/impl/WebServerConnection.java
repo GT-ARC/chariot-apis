@@ -21,10 +21,10 @@ public class WebServerConnection extends AbstractConnectionImpl implements IRest
     // example usage
 //	public static void main(String[] args) throws Exception {
 //		WebServerConnection server = new WebServerConnection();
-//		server.addResource(NetworkOperatorResource.class); // TODO: Network Operator resource example is given below: 
+//		server.addResource(NetworkOperatorResource.class); // TODO: Network Operator resource example is given below:
 //		server.connect();
 //	}
-//	
+
 
     public final int DEFAULT_PORT = 8282;
     private int port = DEFAULT_PORT;

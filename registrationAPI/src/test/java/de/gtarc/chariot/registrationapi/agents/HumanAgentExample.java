@@ -2,9 +2,12 @@ package de.gtarc.chariot.registrationapi.agents;
 
 import de.dailab.jiactng.agentcore.action.scope.ActionScope;
 import de.gtarc.chariot.humanapi.HumanProperty;
+import de.gtarc.chariot.humanapi.ObjectTypes;
 import de.gtarc.chariot.humanapi.impl.HumanBuilder;
-import de.gtarc.chariot.humanapi.impl.SkillImpl;
-import de.gtarc.chariot.humanapi.impl.TaskImpl;
+import de.gtarc.chariot.humanapi.impl.Skill;
+import de.gtarc.chariot.messageapi.impl.EntityBuilder;
+import de.gtarc.chariot.messageapi.payload.PayloadEntity;
+import de.gtarc.commonapi.impl.EntityProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,29 +42,30 @@ public class HumanAgentExample extends HumanAgent {
     // create life skills and tasks
     public static List<UUID> createSkills() {
         // add skills here
+        List<UUID> list = new ArrayList<UUID>();
+        PayloadEntity skill = new EntityBuilder().setGroupId("skills").setName("skill-a")
+                .addProperty(new EntityProperty(0, "name","string","skill-a","",true))
+                .addProperty(new EntityProperty(0, "description","string","...","",true))
+                .setObjectType(ObjectTypes.SKILL)
+                .buildEntity();
 
-        List<SkillImpl> list = new ArrayList<SkillImpl>();
-        List<UUID> uuids = new ArrayList<UUID>();
-
-        for (int i = 0; i < 10; i++) {
-            uuids.add(list.get(i).getSkillId());
-        }
-
-        return uuids;
+        list.add(UUID.fromString(skill.getUuid()));
+        return list;
     }
 
     // create life skills and tasks
     public static List<UUID> createTasks() {
         // add skills here
+        List<UUID> list = new ArrayList<UUID>();
 
-        List<TaskImpl> list = new ArrayList<TaskImpl>();
-        List<UUID> uuids = new ArrayList<UUID>();
+        PayloadEntity task = new EntityBuilder().setUUIdentifier(UUID.randomUUID()).setGroupId("tasks").setName("task-a")
+                .addProperty(new EntityProperty(0, "name","string","task-a","",true))
+//                .addProperty(new EntityProperty(0, Skill.DESCRIPTION.,"string","...","",true))
+                .setObjectType(ObjectTypes.TASK)
+                .buildEntity();
 
-        for (int i = 0; i < 10; i++) {
-            uuids.add(list.get(i).getTaskId());
-        }
-
-        return uuids;
+        list.add(UUID.fromString(task.getUuid()));
+        return list;
     }
 
     @Expose(name = ACTION_NAME_2, scope = ActionScope.GLOBAL)
@@ -70,15 +74,21 @@ public class HumanAgentExample extends HumanAgent {
         updateEntity();
     }
 
-    @Expose(name = ACTION_NAME_1, scope = ActionScope.GLOBAL)
-    public String updateProperty(String key, Object value) {
-        getHuman().getProperties().stream().filter(i -> i.getKey().equalsIgnoreCase(key)).findFirst().ifPresent(i -> {
-            ((HumanProperty) i).setValue(value);
-            updateProperty(i);
-        });
+//    @Expose(name = ACTION_NAME_1, scope = ActionScope.GLOBAL)
+//    public String updateProperty(String key, Object value) {
+//        getHuman().getProperties().stream().filter(i -> i.getKey().equalsIgnoreCase(key)).findFirst().ifPresent(i -> {
+//            ((HumanProperty) i).setValue(value);
+//            updateProperty(i);
+//        });
+//
+//        return "Success";
+//    }
 
-        return "Success";
+    @Override
+    public void handleProperty(String message) {
+
     }
+
     // create task
 
 }

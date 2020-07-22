@@ -6,48 +6,30 @@ package de.gtarc.commonapi.impl;
 import de.gtarc.commonapi.SimpleProperty;
 
 
-public class SimplePropertyImpl implements SimpleProperty {
-
-    private static final long TIMESTAMP_EDEFAULT = 0;
-
-    private static final String KEY_EDEFAULT = "";
-
-    private static final String TYPE_EDEFAULT = "";
+public class SimplePropertyImpl extends PropertyImpl<Object> implements SimpleProperty {
 
     private static final Object VALUE_EDEFAULT = null;
 
-    private static final String UNIT_EDEFAULT = null;
-
-
-    protected long timestamp = TIMESTAMP_EDEFAULT;
-
-    protected String key = KEY_EDEFAULT;
-
-    protected String type = TYPE_EDEFAULT;
+    private static final Double MIN_EDEFAULT = null;
+    private static final Double MAX_EDEFAULT = null;
 
     protected Object value = VALUE_EDEFAULT;
-
-    protected String unit = UNIT_EDEFAULT;
+    protected Double min = MIN_EDEFAULT;
+    protected Double max = MAX_EDEFAULT;
 
 
     public SimplePropertyImpl() {
         super();
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
+
+    @Override
     public Object getValue() {
         return value;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
+
+    @Override
     public void setValue(Object newValue) {
         if (newValue != null) {
             value = newValue;
@@ -55,44 +37,27 @@ public class SimplePropertyImpl implements SimpleProperty {
 
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
-    public String getUnit() {
-        return unit;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
-    public void setUnit(String newUnit) {
-        if (newUnit != null) {
-            unit = newUnit;
-        }
-
+    @Override
+    public Double getMin() {
+        return min;
     }
 
     @Override
-    public String getType() {
-        return type;
+    public void setMin(Double min) {
+        this.min = min;
     }
 
     @Override
-    public void setType(String newType) {
-        if (newType != null) {
-            type = newType;
-        }
+    public Double getMax() {
+        return max;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
+    @Override
+    public void setMax(Double max) {
+        this.max = max;
+    }
+
+
     @Override
     public String toString() {
 
@@ -111,24 +76,5 @@ public class SimplePropertyImpl implements SimpleProperty {
         return result.toString();
 
     }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
-    public String getKey() {
-        return key;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
-    public void setKey(String newKey) {
-        key = newKey;
-    }
-
 
 } //SimplePropertyImpl

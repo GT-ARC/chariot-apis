@@ -1,0 +1,9 @@
+.idea/*
+*.iml
+target/*.settings/
+.settings
+.idea
+.DS_Store
+pom.xml.versionsBackup
+owlAPI/target/
+jiactng.log

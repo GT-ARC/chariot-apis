@@ -134,6 +134,18 @@ public class MqttConnectionImpl extends AbstractConnectionImpl implements Device
 
     }
 
+    public void send(String topic, String message) {
+        try {
+            client.publish(topic, new MqttMessage(message.getBytes()));
+        } catch (MqttException e) {
+            try {
+                throw new ConnectionExceptionImpl(e);
+            } catch (ConnectionExceptionImpl connectionException) {
+                connectionException.printStackTrace();
+            }
+        }
+    }
+
 
     @Override
     public void send(IMessage message) throws ConnectionException {

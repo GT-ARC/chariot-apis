@@ -1,6 +1,6 @@
 package de.gtarc.chariot.registrationapi.agents;
 
-import com.gtarc.chariot.api.jiacbinding.annotations.UseServiceOWLFile;
+//import com.gtarc.chariot.api.jiacbinding.annotations.UseServiceOWLFile;
 import de.dailab.jiactng.agentcore.SimpleAgentNode;
 import de.dailab.jiactng.agentcore.action.scope.ActionScope;
 import de.dailab.jiactng.agentcore.lifecycle.LifecycleException;
@@ -56,12 +56,12 @@ public class REDeviceAgenExample extends DeviceAgentForRE {
         this.register();
     }
 
-    @UseServiceOWLFile(filename = "owls/chariot_service_clear.owl")
-    @Expose(name = ACTION_NAME_2, scope = ActionScope.GLOBAL)
-    public void myUpdateEntity() {
-        // Push updated value in db
-        updateEntity();
-    }
+//    @UseServiceOWLFile(filename = "owls/chariot_service_clear.owl")
+//    @Expose(name = ACTION_NAME_2, scope = ActionScope.GLOBAL)
+//    public void myUpdateEntity() {
+//        // Push updated value in db
+//        updateEntity();
+//    }
 
     /**
      * Data on Device Update comes through the extern request

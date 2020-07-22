@@ -20,7 +20,7 @@ import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-
+@Ignore
 public class ClientRegistrationRunnerTest {
 
     String host = "tcp://130.149.232.235:1883";
@@ -54,6 +54,8 @@ public class ClientRegistrationRunnerTest {
         device.setUUIdentifier(UUID.fromString("a1f114f5-f47f-449d-b579-6605bba061c8"));
         Location location = new Location("", "", "", 1, new Position(0.0, 0.0, null), new Indoorposition(null, 0.0, 0.0));
         DeviceConnection dc = new MqttConnectionImpl(host, username, password, "CreateMessage");
+
+
         //dc.connect();
         device.setConnectionHandler(dc);
         RunnerEntityRegistration runner = new RunnerEntityRegistration(dc, device, agentUUID, "", "", "xx", "Sensor");

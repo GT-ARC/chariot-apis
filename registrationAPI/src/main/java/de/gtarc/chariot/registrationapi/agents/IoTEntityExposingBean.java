@@ -1,5 +1,6 @@
 package de.gtarc.chariot.registrationapi.agents;
 
+//import com.gtarc.chariot.api.ChariotDevServiceDirectoryConnector;
 import com.gtarc.chariot.api.ChariotDevServiceDirectoryConnector;
 import de.dailab.jiactng.agentcore.IAgent;
 import de.dailab.jiactng.agentcore.IAgentBean;
@@ -43,11 +44,12 @@ public abstract class IoTEntityExposingBean extends AbstractMethodExposingBean i
     public static final String PROPERTY_ACTION = "de.gtarc.chariot.handlePropertyAction";
     public static final String ACTION_GET_ENTITY_ID = "com.gtarc.chariot.EntityMonitoringExposingBean#getEntityID";
 
-    protected String host ;//= "tcp://130.149.232.235:1883";
-    protected String username;// = "plbwvpgf";
-    protected String password;// = "mJTPb6z12Bag";
-    protected String clientId;
-    protected String kmsURL;// = "http://chariot-km.dai-lab.de:8080/v1";
+    // These parameters should be set through the agent xml file
+    protected String mqttHostURL;
+    protected String mqttUsername;
+    protected String mqttPassword;
+    protected String mqttClientId;
+    protected String kmsURL;
     protected RegistrationClient registrationHandler = new RegistrationClient();
 
     protected KmsHandler kmsHandler;
@@ -152,7 +154,13 @@ public abstract class IoTEntityExposingBean extends AbstractMethodExposingBean i
     public abstract <T> void updateProperty(T property);
 
 
-    public abstract void setEntity(Entity entity) throws Exception;
+    protected void setEntity(Entity entity) throws Exception {
+        if (entity != null
+                && (entity.getUUIdentifier() == null || entity.getUUIdentifier().toString().equals(""))
+                && !this.getEntityID().equals(""))
+            entity.setUUIdentifier(UUID.fromString(this.getEntityID()));
+        this.entity = entity;
+    };
 
     public Entity getEntity() {
         return this.entity;
@@ -174,77 +182,81 @@ public abstract class IoTEntityExposingBean extends AbstractMethodExposingBean i
      */
     @Expose(name = ACTION_GET_ENTITY_ID, scope = ActionScope.GLOBAL)
     public String getEntityID() {
-        if (this.entity == null)
-            return "";
+        if (this.entity == null) {
+            if (this.entityId == null)
+                return "";
+            else
+                return this.entityId.toString();
+        }
         return this.entity.getUUIdentifier().toString();
     }
 
     /**
-     * Getter for the host
+     * Getter for the mqttHostURL
      *
      * @return
      */
-    public String getHost() {
-        return this.host;
+    public String getMqttHostURL() {
+        return this.mqttHostURL;
     }
 
     /**
-     * Setter for the host
+     * Setter for the mqttHostURL
      *
      * @param Host
      */
-    public void setHost(String Host) {
-        this.host = Host;
+    public void setMqttHostURL(String Host) {
+        this.mqttHostURL = Host;
     }
 
     /**
-     * Getter for the username
+     * Getter for the mqttUsername
      *
      * @return
      */
-    public String getUsername() {
-        return this.username;
+    public String getMqttUsername() {
+        return this.mqttUsername;
     }
 
     /**
-     * Setter for the username
+     * Setter for the mqttUsername
      *
      * @param Username
      */
-    public void setUsername(String Username) {
-        this.username = Username;
+    public void setMqttUsername(String Username) {
+        this.mqttUsername = Username;
     }
 
     /**
-     * Getter for the password
+     * Getter for the mqttPassword
      *
      * @return
      */
-    public String getPassword() {
-        return this.password;
+    public String getMqttPassword() {
+        return this.mqttPassword;
     }
 
 
     /**
-     * Setter for the password
+     * Setter for the mqttPassword
      *
      * @param Password
      */
-    public void setPassword(String Password) {
-        this.password = Password;
+    public void setMqttPassword(String Password) {
+        this.mqttPassword = Password;
     }
 
     /**
      * Each mqtt connection requires a client id
      * @param id
      */
-    public void setClientId(String id){this.clientId = id;}
+    public void setMqttClientId(String id){this.mqttClientId = id;}
 
     /**
      * getter for client id
      * @return
      */
-    public String getClientId(){return this.clientId;}
+    public String getMqttClientId(){return this.mqttClientId;}
 
     /**
      * Set Database URL Address
@@ -259,14 +271,14 @@ public abstract class IoTEntityExposingBean extends AbstractMethodExposingBean i
      * @return
      */
     public String getKmsUrl(){return this.kmsURL;}
-
-    public ServiceDirectoryConnector getServiceDirectoryConnector() {
-        return serviceDirectoryConnector;
-    }
-
-    public void setServiceDirectoryConnector(ServiceDirectoryConnector serviceDirectoryConnector) {
-        this.serviceDirectoryConnector = serviceDirectoryConnector;
-    }
+//
+//    public ServiceDirectoryConnector getServiceDirectoryConnector() {
+//        return serviceDirectoryConnector;
+//    }
+//
+//    public void setServiceDirectoryConnector(ServiceDirectoryConnector serviceDirectoryConnector) {
+//        this.serviceDirectoryConnector = serviceDirectoryConnector;
+//    }
 
     /**
      * IoT Entity Id is set through entity.xml file

@@ -81,10 +81,9 @@ public class RegisterRunner implements Runnable {
     public void registerEntity(PayloadEntityRegistration payload) throws ConnectionException, URISyntaxException {
 
         String objectType = payload.getObjectType();
-        if (objectType.equalsIgnoreCase(IoTEntity.SERVICE_OBJECTTYPE)) {
+        if (objectType.equalsIgnoreCase(IoTEntity.SERVICE)) {
     		callServiceRegistration(payload);
     	} else if (objectType.equalsIgnoreCase(IoTEntity.SENSOR) || objectType.equalsIgnoreCase(IoTEntity.ACTUATOR)) {
-//            payload.setObjectType("devices"); Doesnt work like this because kms needs actuator or sensor
     		callDeviceRegistration(payload);
     	}else if (objectType.equalsIgnoreCase(IoTEntity.HUMAN)) {
     		callHumanRegistration(payload);
@@ -95,7 +94,6 @@ public class RegisterRunner implements Runnable {
          kmsHandler.registerEntity(payload);
          connectionHandler.send(createResponse(true));
 	}
-
     /**
      *
      * @param payload
@@ -124,6 +122,7 @@ public class RegisterRunner implements Runnable {
                     response = createResponse(REID); // sent REID over MQTT protocol to Device Agent
                 }
             } else {
+                System.out.println("deviceRegistrationCall:" + payload.getId() + " " + payload.getIp() + " " + payload.getReId());
                 kmsHandler.registerEntity(payload);
                 response = createResponse(true);
             }

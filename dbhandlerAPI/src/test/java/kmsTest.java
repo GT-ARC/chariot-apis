@@ -1,7 +1,6 @@
 import de.gtarc.chariot.dbhandlerapi.impl.*;
 import de.gtarc.chariot.deviceapi.impl.DevicePropertyImpl;
-import de.gtarc.chariot.humanapi.impl.HumanPropertyImpl;
-import de.gtarc.chariot.messageapi.PayloadProperty;
+import de.gtarc.chariot.messageapi.PayloadEntityAttribute;
 import de.gtarc.chariot.messageapi.PayloadPropertyAttribute;
 import de.gtarc.chariot.messageapi.payload.*;
 import de.gtarc.chariot.serviceapi.impl.ServicePropertyImpl;
@@ -14,7 +13,6 @@ import de.gtarc.commonapi.utils.Position;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.lang.reflect.Array;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -180,7 +178,7 @@ public class kmsTest {
         PayloadEntityRegistration payload = new PayloadEntityRegistration("sensor", "dd78636f-1149-4ddd-903a-629728ae98e4", "5e2b00507993f14664c326b2", "visionsensor", "securitKey", "123",
                 "", "groupId", "GT-arc", location, properties, new Operation[]{});
 
-        PayloadProperty attribute = new PayloadProperty();
+        PayloadEntityAttribute attribute = new PayloadEntityAttribute();
         attribute.setKey("name");
         attribute.setValue("raySensor");
         attribute.setObjectType("sensor");
@@ -261,7 +259,7 @@ public class kmsTest {
         PayloadEntityRegistration payload = new PayloadEntityRegistration("sensor", "dd78636f-1149-4ddd-903a-629728ae98e4", "5e2b00507993f14664c326b2", "visionsensor", "securitKey", "123",
                 "", "groupId", "GT-arc", location, properties, new Operation[]{});
 
-        PayloadProperty attribute = new PayloadProperty();
+        PayloadEntityAttribute attribute = new PayloadEntityAttribute();
         //attribute.setKey("type");
         //attribute.setValue("someType");
         attribute.setKey("indoorposition");

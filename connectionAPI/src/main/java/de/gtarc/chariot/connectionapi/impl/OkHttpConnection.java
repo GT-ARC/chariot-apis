@@ -133,7 +133,9 @@ public class OkHttpConnection extends AbstractConnectionImpl implements DeviceCo
 
     public String remove(String url) throws IOException {
         Request request = new Request.Builder()
-                .url(url).delete().build();
+                .url(url)
+                .delete()
+                .build();
         String responseString;
         try (Response response = client.newCall(request).execute()) {
             if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);

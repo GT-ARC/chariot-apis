@@ -23,25 +23,11 @@ public class SensingDeviceImpl implements SensingDevice {
     protected DeviceStatus deviceStatus;
     protected String type = "sensor";
 
-    /**
-     * The cached value of the '{@link #getDeviceDescription() <em>Device Description</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getDeviceDescription()
-     *
-     * @ordered
-     */
+
 
     protected DeviceDescription deviceDescription;
 
-    /**
-     * The cached value of the '{@link #getHardwareDescription() <em>Hardware Description</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getHardwareDescription()
-     *
-     * @ordered
-     */
+
     protected HardwareDescription hardwareDescription;
 
     @Override
@@ -55,172 +41,53 @@ public class SensingDeviceImpl implements SensingDevice {
         return this.properties;
     }
 
-    /**
-     * The cached value of the '{@link #getOptionalProperties() <em>Optional Properties</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getOptionalProperties()
-     *
-     * @ordered
-     */
     protected List<Property> optionalProperties = new ArrayList<Property>();
 
-    /**
-     * The cached value of the '{@link #getProperties() <em>Mandatory Properties</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getProperties()
-     *
-     * @ordered
-     */
-    protected List<Property> properties = new ArrayList<Property>();
-    ;
 
-    /**
-     * The default value of the ' ' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @ordered
-     */
+    protected List<Property> properties = new ArrayList<Property>();
+
     protected static final UUID UID_EDEFAULT = null;
 
-    /**
-     * The cached value of the ' ' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @ordered
-     */
     protected UUID uid = UID_EDEFAULT;
 
-    /**
-     * The default value of the '{@link #getNamespaceUri() <em>Namespace Uri</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getNamespaceUri()
-     *
-     * @ordered
-     */
     protected static final URI NAMESPACE_URI_EDEFAULT = null;
 
-    /**
-     * The cached value of the '{@link #getNamespaceUri() <em>Namespace Uri</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getNamespaceUri()
-     *
-     * @ordered
-     */
+
     protected URI namespaceUri = NAMESPACE_URI_EDEFAULT;
 
-    /**
-     * The default value of the '{@link #getDeviceLocation() <em>Location</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     *
-     * @ordered
-     * @see #getDeviceLocation() ()
-     */
+
     protected static final Location LOCATION_EDEFAULT = null;
 
-    /**
-     * The default value of the '{@link #getVendor() <em>Vendor</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getVendor()
-     *
-     * @ordered
-     */
     protected static final String VENDOR_EDEFAULT = null;
 
-    /**
-     * The cached value of the '{@link #getDeviceLocation()} () <em>Locatiom</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     *
-     * @ordered
-     * @see #getDeviceLocation()
-     */
     protected Location location = LOCATION_EDEFAULT;
 
-    /**
-     * The cached value of the '{@link #getVendor() <em>Vendor</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getVendor()
-     *
-     * @ordered
-     */
     protected String vendor = VENDOR_EDEFAULT;
 
     protected static final String PLATFORM_EDEFAULT = null;
 
-    /**
-     * The cached value of the '{@link #getPlatform() <em>Platform</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getPlatform()
-     *
-     * @ordered
-     */
     protected String platform = PLATFORM_EDEFAULT;
 
-    /**
-     * The cached value of the '{@link #getConnectionHandler() <em>Handler</em>}' containment reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getConnectionHandler()
-     *
-     * @ordered
-     */
     protected DeviceConnection handler;
     protected List<Operation> operations = new ArrayList<>();
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
     public SensingDeviceImpl() {
         super();
     }
 
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
     public DeviceDescription getDeviceDescription() {
         return deviceDescription;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
+
     public void setDeviceDescription(DeviceDescription newDeviceDescription) {
         deviceDescription = newDeviceDescription;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
     public HardwareDescription getHardwareDescription() {
         return hardwareDescription;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
     public void setHardwareDescription(HardwareDescription newHardwareDescription) {
         hardwareDescription = newHardwareDescription;
     }
@@ -250,126 +117,60 @@ public class SensingDeviceImpl implements SensingDevice {
         return optionalProperties;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
     public UUID getUUIdentifier() {
         return uid;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
     public void setUUIdentifier(UUID newUid) {
         uid = newUid;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
     public URI getNamespaceUri() {
         return namespaceUri;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
     public void setNamespaceUri(URI newNamespaceUri) {
         namespaceUri = newNamespaceUri;
     }
 
-    /**
-     * @return the vendor
-     */
     public String getVendor() {
         return vendor;
     }
 
-    /**
-     * @param vendor the vendor to set
-     */
     public void setVendor(String vendor) {
         this.vendor = vendor;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     *
-     */
     public Location getDeviceLocation() {
         return location;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *LOCATION_EDEFAULT
-     *
-     */
     public void setDeviceLocation(Location newlocation) {
         location = newlocation;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
+
     public DeviceConnection getConnectionHandler() {
         return handler;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
+
     public void setConnectionHandler(DeviceConnection newHandler) {
         handler = newHandler;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
     public String getName() {
         return name;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
     public String getFriendlyName() {
         return friendlyName;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
     public void setFriendlyName(String friendlyName) {
         this.friendlyName = friendlyName;
     }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
     @Override
     public String toString() {
 

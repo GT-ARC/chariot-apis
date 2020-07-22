@@ -20,13 +20,13 @@ public interface HumanProperty extends Property {
 
     void setWritable(boolean writable);
 
-    String getMin();
+    Double getMin();
 
-    void setMin(String min);
+    void setMin(Double min);
 
-    String getMax();
+    Double getMax();
 
-    void setMax(String max);
+    void setMax(Double max);
 
 
 }

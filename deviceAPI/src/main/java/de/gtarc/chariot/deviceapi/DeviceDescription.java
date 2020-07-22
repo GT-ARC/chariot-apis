@@ -29,20 +29,7 @@ public interface DeviceDescription extends Description {
      */
     void setDeviceName(String value);
 
-    /**
-     * Returns the value of the '<em><b>Device Type</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Device Type</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     *
-     * @return the value of the '<em>Device Type</em>' attribute.
-     * @model required="true"
-     * @see #setDeviceType(String)
-     * @see deviceapi.DeviceAPIPackage#getDeviceDescription_DeviceType()
-     */
+
     String getDeviceType();
 
     /**

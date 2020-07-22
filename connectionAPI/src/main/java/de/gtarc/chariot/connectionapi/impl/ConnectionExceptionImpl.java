@@ -13,11 +13,7 @@ import de.gtarc.chariot.connectionapi.ConnectionException;
  *
  */
 public class ConnectionExceptionImpl extends ConnectionException {
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     */
+
     public ConnectionExceptionImpl(Throwable t) {
         super(t);
     }

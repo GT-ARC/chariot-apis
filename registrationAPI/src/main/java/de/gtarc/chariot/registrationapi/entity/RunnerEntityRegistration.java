@@ -87,6 +87,7 @@ public class RunnerEntityRegistration implements Callable<RegistrationResult>, C
      */
     @Override
     public RegistrationResult call() throws InterruptedException, ConnectionException, SocketException, UnknownHostException {
+        System.out.print("\n\n: reId:"+reId);
         AbstractMessage message = createRegistrationMessage(
                 "",
                 TopicConfig.getRegisterTopic(),

@@ -24,7 +24,7 @@ import java.net.UnknownHostException;
 import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
-
+@Ignore
 public class RunnerDeviceRegistrationTest {
 
     String host = "tcp://130.149.232.235:1083";

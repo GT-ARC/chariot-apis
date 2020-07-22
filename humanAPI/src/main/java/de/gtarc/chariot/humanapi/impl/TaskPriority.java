@@ -1,5 +1,8 @@
 package de.gtarc.chariot.humanapi.impl;
 
+/***
+ * @author cemakpolat
+ */
 public enum TaskPriority {
     LOW("Low"), HIGH("High");
 

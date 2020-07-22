@@ -1,18 +1,22 @@
 package de.gtarc.chariot.registrationapi.agents;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import de.dailab.jiactng.agentcore.action.scope.ActionScope;
 import de.gtarc.chariot.connectionapi.*;
+import de.gtarc.chariot.deviceapi.ComplexDeviceProperty;
 import de.gtarc.chariot.deviceapi.Device;
 import de.gtarc.chariot.deviceapi.DeviceProperty;
 import de.gtarc.chariot.deviceapi.impl.DevicePropertyBuilder;
 import de.gtarc.chariot.messageapi.AbstractMessage;
-import de.gtarc.chariot.messageapi.AbstractPayload;
-import de.gtarc.chariot.messageapi.PayloadProperty;
-import de.gtarc.chariot.messageapi.impl.MessageBuilder;
+import de.gtarc.chariot.messageapi.PayloadEntityAttribute;
 import de.gtarc.chariot.messageapi.impl.PayloadResponse;
 import de.gtarc.chariot.messageapi.payload.PayloadEntityProperty;
 import de.gtarc.chariot.registrationapi.client.util.ClientResult;
 import de.gtarc.chariot.registrationapi.client.util.RegistrationResult;
 import de.gtarc.commonapi.Entity;
+import de.gtarc.commonapi.Property;
+import de.gtarc.commonapi.SimpleProperty;
 import de.gtarc.commonapi.utils.IoTEntity;
 
 import java.util.*;
@@ -41,11 +45,13 @@ public abstract class DeviceAgent extends IoTEntityExposingBean {
         if (this.entity == null)
             throw new Exception("Pls set entity first");
 
+        this.mqttClientId = this.entity.getUUIdentifier().toString();
+
         log.info("Register Device");
         setAgentActionsAsOperations();
         setAgentProperties();
         this.configureDatabaseConnection("/devices/");
-        this.conn = getMqttConnect(getHost(), getUsername(), getPassword(), getClientId());
+        this.conn = getMqttConnect(getMqttHostURL(), getMqttUsername(), getMqttPassword(), getMqttClientId());
 
         Future<RegistrationResult> result = registrationHandler
                 .registerEntity(this.conn,
@@ -77,7 +83,7 @@ public abstract class DeviceAgent extends IoTEntityExposingBean {
     }
 
     public void setEntity(Entity entity) throws Exception {
-        this.entity = entity;
+        super.setEntity(entity);
         if (!(this.entity instanceof Device))
             throw new Exception("Device Agent can only register devices");
         this.device = (Device) entity;
@@ -112,7 +118,27 @@ public abstract class DeviceAgent extends IoTEntityExposingBean {
      */
     public void updateProperty(String key, Object value) {
         getDevice().getProperties().stream().filter(i -> i.getKey().equals(key)).findFirst().ifPresent(i -> {
-            ((DeviceProperty) i).setValue(value);
+            if(i instanceof DeviceProperty)
+                i.setValue(value);
+            else if (i instanceof ComplexDeviceProperty && value instanceof String) {
+                JsonObject jsonObject = new JsonParser().parse(String.valueOf(value)).getAsJsonObject();
+                for (SimpleProperty deviceProperty : ((ComplexDeviceProperty) i).getValue()) {
+                    if(jsonObject.has(deviceProperty.getKey())){
+                        switch (deviceProperty.getType()) {
+                            case "number":
+                                deviceProperty.setValue(jsonObject.get(deviceProperty.getKey()).getAsDouble());
+                                break;
+                            case "boolean":
+                                deviceProperty.setValue(jsonObject.get(deviceProperty.getKey()).getAsBoolean());
+                                break;
+                            case "string":
+                                deviceProperty.setValue(jsonObject.get(deviceProperty.getKey()).getAsString());
+                                break;
+                        }
+
+                    }
+                }
+            }
             updateProperty(i);
         });
     }
@@ -124,8 +150,9 @@ public abstract class DeviceAgent extends IoTEntityExposingBean {
      */
     @Override
     public  <T> void updateProperty(T property) {
-        DeviceProperty deviceProperty = (DeviceProperty) property;
+        Property<?> deviceProperty = (Property<?>) property;
         kmsHandler.updateEntityProperty(device.getUUIdentifier().toString(),
+
                 new PayloadEntityProperty(
                         new Date().getTime(),
                         this.device.getType(),
@@ -151,11 +178,9 @@ public abstract class DeviceAgent extends IoTEntityExposingBean {
                     new PayloadEntityProperty(
                             timestamp,
                             this.device.getType(),
-                            deviceProperty.getKey(),
                             deviceProperty.getType(),
-                            deviceProperty.getValue(),
-                            deviceProperty.getUnit(),
-                            deviceProperty.getWritable()
+                            deviceProperty.getKey(),
+                            deviceProperty.getValue()
                     )
             );
         });
@@ -169,17 +194,15 @@ public abstract class DeviceAgent extends IoTEntityExposingBean {
         long timestamp = new Date().getTime();
         properties.forEach((key,value) ->{
             getDevice().getProperties().stream().filter(i -> i.getKey().equals(key)).findFirst().ifPresent(i -> {
-                ((DeviceProperty) i).setValue(value);
+                i.setValue(value);
                 DeviceProperty deviceProperty = ((DeviceProperty) i);
                 kmsHandler.updateEntityProperty(device.getUUIdentifier().toString(),
                         new PayloadEntityProperty(
                                 timestamp,
                                 this.device.getType(),
-                                deviceProperty.getKey(),
                                 deviceProperty.getType(),
-                                deviceProperty.getValue(),
-                                deviceProperty.getUnit(),
-                                deviceProperty.getWritable()
+                                deviceProperty.getKey(),
+                                deviceProperty.getValue()
                         )
                 );
             });
@@ -191,6 +214,7 @@ public abstract class DeviceAgent extends IoTEntityExposingBean {
      * Message format: command="value", "uuid"="deviceId", inputs = {property,..}
      * @param message
      */
+    @Expose(name = PROPERTY_ACTION, scope = ActionScope.GLOBAL, returnTypes = {})
     public abstract void handleProperty(String message);
 
     /**
@@ -207,22 +231,23 @@ public abstract class DeviceAgent extends IoTEntityExposingBean {
      */
 
     public void updateEntityAttribute(String key, Object value) {
-        if (device.getName().equals(key)){
+        boolean somethingChanged = false;
+        if (device.getName() != null && device.getName().equals(key)){
             device.setName(value.toString());
-        }else if (device.getVendor().equals(key)){
+            somethingChanged = true;
+        }else if ( device.getVendor() != null && device.getVendor().equals(key)){
             device.setVendor(value.toString());
-        }else if (device.getFriendlyName().equals(key)){
+            somethingChanged = true;
+        }else if (device.getFriendlyName() != null && device.getFriendlyName().equals(key)){
             device.setFriendlyName(value.toString());
-        }else if (device.getPlatform().equals(key)){
+            somethingChanged = true;
+        }else if (device.getPlatform() != null && device.getPlatform().equals(key)){
             device.setPlatform(value.toString());
+            somethingChanged = true;
         }
 
-        PayloadProperty attribute = new PayloadProperty();
-        attribute.setKey(key);
-        attribute.setValue(value);
-        attribute.setObjectType(device.getType());
-
-        kmsHandler.updateEntityAttribute(device.getUUIdentifier().toString(), attribute);
+        if(somethingChanged)
+            kmsHandler.updateEntityAttribute(device.getUUIdentifier().toString(), new PayloadEntityAttribute(device.getType(),key,value));
     }
 
 

@@ -15,11 +15,6 @@ public class DeviceAPIFactoryImpl implements DeviceAPIFactory {
 
     public static DeviceAPIFactoryImpl deviceAPIFactory = null;
 
-    /**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     */
     public static DeviceAPIFactoryImpl init() {
         if (deviceAPIFactory == null) {
             deviceAPIFactory = new DeviceAPIFactoryImpl();
@@ -29,20 +24,15 @@ public class DeviceAPIFactoryImpl implements DeviceAPIFactory {
     }
 
 
-    /**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     */
     public DeviceAPIFactoryImpl() {
         super();
     }
 
-    @Override
-    public Property createPropertyImpl() {
-        PropertyImpl propertyImpl = new PropertyImpl();
-        return propertyImpl;
-    }
+//    @Override
+//    public Property createPropertyImpl() {
+//        PropertyImpl propertyImpl = new PropertyImpl();
+//        return propertyImpl;
+//    }
 
     @Override
     public SimpleProperty createSimplePropertyImpl() {

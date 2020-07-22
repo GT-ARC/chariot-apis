@@ -1,7 +1,6 @@
 package de.gtarc.chariot.dbhandlerapi;
 
-import de.gtarc.chariot.messageapi.AbstractPayload;
-import de.gtarc.chariot.messageapi.PayloadProperty;
+import de.gtarc.chariot.messageapi.PayloadEntityAttribute;
 import de.gtarc.chariot.messageapi.PayloadPropertyAttribute;
 import de.gtarc.chariot.messageapi.payload.*;
 
@@ -22,7 +21,7 @@ public interface DbHandler {
      * @param payload
      */
     public String registerEntity(PayloadEntityRegistration payload);
-
+    public String addEntity(PayloadEntity payload);
     /**
      * Update the given entity with its id
      *
@@ -108,7 +107,7 @@ public interface DbHandler {
      * @param entityId
      * @param payload
      */
-    public void updateEntityAttribute(String entityId, PayloadProperty payload);
+    public void updateEntityAttribute(String entityId, PayloadEntityAttribute payload);
 
     /**
      * This method updates the attribute of a property
@@ -124,6 +123,6 @@ public interface DbHandler {
      * @param entityId
      * @param payload
      */
-    public void updateLocation(String entityId, String otype, PayloadProperty payload);
+    public void updateLocation(String entityId, String otype, PayloadEntityAttribute payload);
 
 }

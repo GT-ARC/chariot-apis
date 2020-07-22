@@ -19,9 +19,9 @@ public class PayloadEntityProperty extends AbstractPayload {
     String type;
     String unit;
     boolean writable;
-    String min;
-    String max;
-    List<String> relatedTo; // url, related to a service accesible via URL address
+    Double min;
+    Double max;
+    List<String> relatedTo; // url, related to a service accessible via URL address
     Object operation; // operation details
 
 
@@ -34,11 +34,11 @@ public class PayloadEntityProperty extends AbstractPayload {
         this.key = key;
         this.type = type;
         this.value = value;
-        if (type.equalsIgnoreCase("array")) {
+/*        if (type.equalsIgnoreCase("array")) {
             this.value = payloadEntityProperty(value);
         } else {
             this.unit = unit;
-        }
+        }*/
         this.unit = unit;
         this.writable = writable;
 
@@ -49,43 +49,60 @@ public class PayloadEntityProperty extends AbstractPayload {
         this.timestamp = timestamp;
         this.key = key;
         this.type = type;
+        this.value = value;
 
-        if (type.equalsIgnoreCase("array")) {
+        /*if (type.equalsIgnoreCase("array")) {
             this.value = payloadServiceProperty(value);
         } else {
             this.value = value;
+        }*/
 
-        }
         this.unit = unit;
         this.relatedTo = relatedTo;
         this.operation = operation;
     }
 
     public PayloadEntityProperty(long timestamp, String objectType, String key, String type, Object value, String unit,
-                                 boolean writable, String min, String max) {
+                                 boolean writable, Double min, Double max) {
         this.objectType = objectType;
         this.timestamp = timestamp;
         this.key = key;
         this.type = type;
         this.value = value;
 
-        if (type.equalsIgnoreCase("array")) {
+/*        if (type.equalsIgnoreCase("array")) {
             this.value = payloadEntityProperty(value);
         } else {
             this.unit = unit;
-        }
+        }*/
 
         this.writable = writable;
         this.min = min;
         this.max = max;
     }
 
-    public PayloadEntityProperty(String objectType, String type, String key, String value, boolean writable) {
+    public PayloadEntityProperty(long timestamp, String objectType, String type, String key, String value, boolean writable) {
+        this.timestamp = timestamp;
         this.objectType = objectType;
         this.key = key;
         this.type = type;
         this.value = value;
         this.writable = writable;
+    }
+
+    public PayloadEntityProperty(long timestamp, String objectType, String type,  String key, Object value) {
+        this.timestamp = timestamp;
+        this.objectType = objectType;
+        this.type = type;
+        this.key = key;
+        this.value = value;
+    }
+
+    public PayloadEntityProperty(String objectType, String type, String key, Object value) {
+        this.objectType = objectType;
+        this.key = key;
+        this.type = type;
+        this.value = value;
     }
 
     // TODO: The object case is not planned
@@ -124,10 +141,10 @@ public class PayloadEntityProperty extends AbstractPayload {
         property.writable = jsonObject.get("writable").getAsBoolean();
 
         if (jsonObject.has("min")) {
-            property.min = jsonObject.get("min").getAsString();
+            property.min = jsonObject.get("min").getAsDouble();
         }
         if (jsonObject.has("max")) {
-            property.max = jsonObject.get("max").getAsString();
+            property.max = jsonObject.get("max").getAsDouble();
         }
 
         return property;
@@ -209,19 +226,19 @@ public class PayloadEntityProperty extends AbstractPayload {
         this.writable = writable;
     }
 
-    public String getMin() {
+    public Double getMin() {
         return min;
     }
 
-    public void setMin(String min) {
+    public void setMin(Double min) {
         this.min = min;
     }
 
-    public String getMax() {
+    public Double getMax() {
         return max;
     }
 
-    public void setMax(String max) {
+    public void setMax(Double max) {
         this.max = max;
     }
 

@@ -5,14 +5,14 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import de.gtarc.chariot.connectionapi.impl.WebClientConnection;
+import de.gtarc.chariot.dbhandlerapi.EntityURIPath;
 import de.gtarc.chariot.dbhandlerapi.KmsHandler;
-import de.gtarc.chariot.messageapi.PayloadProperty;
+import de.gtarc.chariot.humanapi.ObjectTypes;
+import de.gtarc.chariot.messageapi.PayloadEntityAttribute;
 import de.gtarc.chariot.messageapi.PayloadPropertyAttribute;
-import de.gtarc.chariot.messageapi.payload.PayloadEntityProperty;
-import de.gtarc.chariot.messageapi.payload.PayloadEntityPropertyAdd;
-import de.gtarc.chariot.messageapi.payload.PayloadEntityRegistration;
-import de.gtarc.chariot.messageapi.payload.PayloadEntityRemoval;
+import de.gtarc.chariot.messageapi.payload.*;
 import de.gtarc.commonapi.utils.IoTEntity;
+import org.apache.log4j.Logger;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -26,6 +26,8 @@ import java.util.ArrayList;
 
 public class KmsHandlerImpl implements KmsHandler {
 
+    private static final Logger log = Logger.getLogger(KmsHandlerImpl.class);
+
     URI uri;
     String host;
     String entityPath;
@@ -36,12 +38,11 @@ public class KmsHandlerImpl implements KmsHandler {
     /**
      * The url and entity type can be set when instantiating the class.
      * The entity type depends on the type of agent.
-     * For device -> "/devices/", for service -> "/services/", for human -> "/humans/"
+     * For device  "/devices/", for services "/services/", for human  "/humans/"
      * Example: KmsHandlerImpl kms = new KmsHandlerImpl("http://chariot-km.dai-lab.de:8080/v1", "/devices/");
      *
-     * @param url
-     * @param entity
-     * @throws URISyntaxException
+     * @param url path
+     * @param entity type
      */
     public KmsHandlerImpl(String url, String entity) throws URISyntaxException {
         this.uri = new URI(url);
@@ -54,7 +55,6 @@ public class KmsHandlerImpl implements KmsHandler {
      *
      * @param url
      * @param entity
-     * @throws URISyntaxException
      */
     @Override
     public void setURI(String url, String entity) throws URISyntaxException {
@@ -72,40 +72,48 @@ public class KmsHandlerImpl implements KmsHandler {
     /**
      * THis method returns the Uri that is set
      *
-     * @return
+     * @return uri
      */
     @Override
     public URI getURI() {
         return this.uri;
     }
 
-    // TODO: This is not required!
-    public String getEntityPath() {
-        return this.entityPath;
-    }
 
     @Override
     public void setEntityPath(String path) {
-        this.entityPath = "/" + path + "/";
+        this.entityPath = path ;
     }
 
+
+    /**
+     * This method creates the connection to the database.
+     *
+     * @return http connection
+     */
+    public WebClientConnection createDBConnection() {
+        WebClientConnection client = new WebClientConnection();
+        client.setConnectionURI(host);
+        return client;
+    }
     /**
      * This method registers device, service and human to the KMS.
      *
      * @param payload
+     * @return response
      */
     @Override
     public String registerEntity(PayloadEntityRegistration payload) {
         String jsonpayload = payload.getJsonString(payload.getClass());
-        System.out.println(jsonpayload);
+        log.info(jsonpayload);
         WebClientConnection client = createDBConnection();
 
         String result = "FAILURE";
         try {
             client.connect();
-            result = client.sendJsonByPost(client.getConnectionURI() + getEntityID(payload.getObjectType()), jsonpayload);
+            result = client.sendJsonByPost(client.getConnectionURI() + getEntityURIPath(payload.getObjectType()), jsonpayload);
 
-            System.out.println("registration result: " + result);
+            log.info("registration result: " + result);
             // check here the model includes the id
             client.disconnect();
         } catch (Exception e) {
@@ -117,6 +125,32 @@ public class KmsHandlerImpl implements KmsHandler {
     }
 
     /**
+     * Add an Entity in the database
+     * @param payload
+     * @return result
+     */
+    @Override
+    public String addEntity(PayloadEntity payload) {
+        String jsonpayload = payload.getJsonString(payload.getClass());
+        log.info(jsonpayload);
+        WebClientConnection client = createDBConnection();
+
+        String result = "FAILURE";
+        try {
+            client.connect();
+            result = client.sendJsonByPost(client.getConnectionURI() + getEntityURIPath(payload.getObjectType()), jsonpayload);
+
+            log.info("registration result: " + result);
+            // check here the model includes the id
+            client.disconnect();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            client.disconnect();
+        }
+        return result;
+    }
+    /**
      * This method updates device, service and human.
      *
      * @param entityId
@@ -125,11 +159,13 @@ public class KmsHandlerImpl implements KmsHandler {
     @Override
     public void updateEntity(String entityId, PayloadEntityRegistration payload) {
         String jsonpayload = payload.getJsonString(payload.getClass());
-
+        System.out.println("jsonpayload: \n"+ jsonpayload);
+        System.out.println("entityId: \n"+ entityId);
+        System.out.println("uri: \n"+ getEntityURIPath(payload.getObjectType()) + entityId + "/");
         WebClientConnection client = createDBConnection();
         try {
             client.connect();
-            client.sendByPut(client.getConnectionURI() + getEntityID(payload.getObjectType()) + entityId + "/", jsonpayload);
+            client.sendByPut(client.getConnectionURI() + getEntityURIPath(payload.getObjectType()) + entityId + "/", jsonpayload);
             client.disconnect();
         } catch (Exception e) {
             throw e;
@@ -139,16 +175,6 @@ public class KmsHandlerImpl implements KmsHandler {
 
     }
 
-    /**
-     * This method creates the connection to the database.
-     *
-     * @return
-     */
-    public WebClientConnection createDBConnection() {
-        WebClientConnection client = new WebClientConnection();
-        client.setConnectionURI(host);
-        return client;
-    }
 
     /**
      * This method removes device, service and human.
@@ -161,7 +187,7 @@ public class KmsHandlerImpl implements KmsHandler {
 
         try {
             client.connect();
-            client.sendByDelete(client.getConnectionURI() + getEntityID(payload.getObjectType()) + entityId + "/");
+            client.sendByDelete(client.getConnectionURI() + getEntityURIPath(payload.getObjectType()) + entityId + "/");
             client.disconnect();
         } catch (Exception e) {
             throw e;
@@ -169,6 +195,24 @@ public class KmsHandlerImpl implements KmsHandler {
             client.disconnect();
         }
 
+    }
+    /**
+     * This method removes the given entity id in the database
+     *
+     * @param entityId
+     */
+    public void removeEntity(String entityId, String oType) {
+        WebClientConnection client = createDBConnection();
+
+        try {
+            client.connect();
+            client.sendByDelete(client.getConnectionURI() + getEntityURIPath(oType) + entityId + "/");
+            client.disconnect();
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            client.disconnect();
+        }
     }
 
     /**
@@ -187,7 +231,7 @@ public class KmsHandlerImpl implements KmsHandler {
             JsonParser parser = new JsonParser();
             JsonElement entityElement = parser.parse(entity);
             JsonObject entityobject = entityElement.getAsJsonObject();
-            System.out.println(entityobject);
+            log.info(entityobject);
 
             JsonArray props = entityobject.get("properties").getAsJsonArray();
 
@@ -211,12 +255,15 @@ public class KmsHandlerImpl implements KmsHandler {
      */
     @Override
     public void updateEntityProperty(String entityId, PayloadEntityProperty payload) {
+        String objectType = payload.getObjectType();
+        payload.setObjectType(null);
         String jsonpayload = payload.getJsonString(payload.getClass());
         WebClientConnection client = createDBConnection();
 
         try {
             client.connect();
-            client.sendByPut(client.getConnectionURI() + getEntityID(payload.getObjectType()) + entityId + "/properties/" + payload.getKey() + "/", jsonpayload);
+            log.info("Send to kms: " + jsonpayload);
+            client.sendByPut(client.getConnectionURI() + getEntityURIPath(objectType) + entityId + "/properties/" + payload.getKey() + "/", jsonpayload);
             client.disconnect();
         } catch (Exception e) {
             throw e;
@@ -230,11 +277,11 @@ public class KmsHandlerImpl implements KmsHandler {
         String jsonpayload = payload.getPayloadEntityProperty().getJsonString(payload.getPayloadEntityProperty().getClass());
         WebClientConnection client = createDBConnection();
 
-        System.out.println(jsonpayload);
+        log.info(jsonpayload);
 
         try {
             client.connect();
-            client.sendByPut(client.getConnectionURI() + getEntityID(payload.getObjectType()) + entityId + "/properties/", jsonpayload);
+            client.sendByPut(client.getConnectionURI() + getEntityURIPath(payload.getObjectType()) + entityId + "/properties/", jsonpayload);
             client.disconnect();
         } catch (Exception e) {
             throw e;
@@ -257,7 +304,7 @@ public class KmsHandlerImpl implements KmsHandler {
         try {
             client.connect();
             if (payload != null) {
-                client.sendByDelete(client.getConnectionURI() + getEntityID(payload.getObjectType()) + entityId + "/properties/" + payload.getKey() + "/");
+                client.sendByDelete(client.getConnectionURI() + getEntityURIPath(payload.getObjectType()) + entityId + "/properties/" + payload.getKey() + "/");
             }
             client.disconnect();
         } catch (Exception e) {
@@ -270,7 +317,7 @@ public class KmsHandlerImpl implements KmsHandler {
     /**
      * This method gets all entities in the given entityPath.
      *
-     * @return
+     * @return all entities in json string
      */
     @Override
     public String getAllEntities() {
@@ -280,7 +327,7 @@ public class KmsHandlerImpl implements KmsHandler {
 
         try {
             client.connect();
-            allentities = client.sendByGet(client.getConnectionURI() + entityPath);
+            allentities = client.sendByGet(client.getConnectionURI() + getEntityURIPath(entityPath));
             client.disconnect();
         } catch (Exception e) {
             throw e;
@@ -294,7 +341,7 @@ public class KmsHandlerImpl implements KmsHandler {
      * This method returns asked entity.
      *
      * @param entityId
-     * @return
+     * @return entity in json stirng
      */
     @Override
     public String getEntity(String entityId) {
@@ -303,7 +350,9 @@ public class KmsHandlerImpl implements KmsHandler {
         String entity;
         try {
             client.connect();
-            entity = client.sendByGet(client.getConnectionURI() + this.entityPath + entityId + "/");
+            //log.info("\n\n" +this.entityPath);
+            //log.info("\n\n"+client.getConnectionURI() + getEntityURIPath(this.entityPath) + entityId + "/");
+            entity = client.sendByGet(client.getConnectionURI() + getEntityURIPath(this.entityPath) + entityId + "/");
             client.disconnect();
         } catch (Exception e) {
             throw e;
@@ -318,7 +367,7 @@ public class KmsHandlerImpl implements KmsHandler {
      * This method returns the kafka topic of the entity
      *
      * @param entityId
-     * @return
+     * @return kafka topic
      */
     @Override
     public String getKafkaTopic(String entityId) {
@@ -340,7 +389,7 @@ public class KmsHandlerImpl implements KmsHandler {
      * This method returns the reID of the entity
      *
      * @param entityId
-     * @return
+     * @return reId
      */
     @Override
     public String getReId(String entityId) {
@@ -362,7 +411,7 @@ public class KmsHandlerImpl implements KmsHandler {
      * This method returns the agent ID of the entity
      *
      * @param entityId
-     * @return
+     * @return agentId
      */
     @Override
     public String getAgentId(String entityId) {
@@ -385,7 +434,7 @@ public class KmsHandlerImpl implements KmsHandler {
      * This method checks if the entity is in the database.
      *
      * @param entityId
-     * @return
+     * @return status
      */
     @Override
     public boolean isEntityAvailable(String entityId) {
@@ -410,15 +459,13 @@ public class KmsHandlerImpl implements KmsHandler {
      * @param payload
      */
     @Override
-    public void updateEntityAttribute(String entityId, PayloadProperty payload) {
+    public void updateEntityAttribute(String entityId, PayloadEntityAttribute payload) {
         WebClientConnection client = createDBConnection();
 
         try {
             client.connect();
             if (payload != null) {
-                Object stringpayload = ((PayloadProperty) payload).getValue();
-                // TODO: This part needs to be updated
-                client.sendByPatch(client.getConnectionURI() + getEntityID(payload.getObjectType()) + entityId + "/" + ((PayloadProperty) payload).getKey() + "/", stringpayload.toString());
+                client.sendByPatch(client.getConnectionURI() + getEntityURIPath(payload.getObjectType()) + entityId + "/" + ( payload).getKey() + "/", payload.getValue().toString());
             }
             client.disconnect();
         } catch (Exception e) {
@@ -441,10 +488,7 @@ public class KmsHandlerImpl implements KmsHandler {
         try {
             client.connect();
             if (payload != null) {
-                Object stringpayload = payload.getValue();
-                // TODO: This part needs to be updated
-                System.out.println("PRINT: " + payload.getObjectType());
-                client.sendByPatch(client.getConnectionURI() + getEntityID(payload.getObjectType()) + entityId + "/properties/" + payload.getPropertyKey() + "/" + payload.getKey() + "/", stringpayload.toString());
+                client.sendByPatch(client.getConnectionURI() + getEntityURIPath(payload.getObjectType()) + entityId + "/properties/" + payload.getPropertyKey() + "/" + payload.getKey() + "/", payload.getValue().toString());
             }
             client.disconnect();
         } catch (Exception e) {
@@ -462,14 +506,13 @@ public class KmsHandlerImpl implements KmsHandler {
      * @param payload
      */
     @Override
-    public void updateLocation(String entityId, String otype, PayloadProperty payload) {
+    public void updateLocation(String entityId, String otype, PayloadEntityAttribute payload) {
         WebClientConnection client = createDBConnection();
 
         try {
             client.connect();
             if (payload != null) {
-                Object attributepayload = ((PayloadProperty) payload).getValue();
-                client.sendByPatch(client.getConnectionURI() + "/" + otype + "/" + entityId + "/location/" + ((PayloadProperty) payload).getKey() + "/", attributepayload.toString());
+                client.sendByPatch(client.getConnectionURI() + "/" + otype + "/" + entityId + "/location/" + (payload).getKey() + "/", payload.getValue().toString());
             }
             client.disconnect();
         } catch (Exception e) {
@@ -479,18 +522,23 @@ public class KmsHandlerImpl implements KmsHandler {
         }
     }
 
-    String getEntityID(String objectType) {
-        if (objectType == null) {
-            return "NONE";
-        }
-        else if (objectType.equalsIgnoreCase(IoTEntity.SERVICE_OBJECTTYPE)) {
-            return "/" + IoTEntity.SERVICE + "/";
-        } else if (objectType.equalsIgnoreCase(IoTEntity.SENSOR) || objectType.equalsIgnoreCase(IoTEntity.ACTUATOR)) {
-            return "/" + IoTEntity.DEVICE + "/";
+    String getEntityURIPath(String objectType) {
+        System.out.print("\n\n objectType:"+objectType);
+        if (objectType.equalsIgnoreCase(IoTEntity.SERVICE)) {
+            return "/" + EntityURIPath.SERVICES + "/";
+        } else if (objectType.equalsIgnoreCase(IoTEntity.SENSOR)) {
+            return "/" + EntityURIPath.DEVICES + "/";
+        } else if (objectType.equalsIgnoreCase(IoTEntity.ACTUATOR)) {
+            return "/" +  EntityURIPath.DEVICES + "/";
         } else if (objectType.equalsIgnoreCase(IoTEntity.HUMAN)) {
-            return "/" + IoTEntity.HUMAN + "/";
-        } else {
-            System.out.println("The given objectType is unknown!");
+            return "/" + EntityURIPath.HUMANS + "/";
+        }else if (objectType.equalsIgnoreCase(IoTEntity.TASK)) {
+            return "/" + EntityURIPath.TASKS+ "/";
+        }else if (objectType.equalsIgnoreCase(IoTEntity.SKILL)) {
+            return "/" + EntityURIPath.SKILLS+ "/";
+        }else {
+            log.error("The given objectType is unknown!" + objectType);
+
         }
 
         return "NONE";

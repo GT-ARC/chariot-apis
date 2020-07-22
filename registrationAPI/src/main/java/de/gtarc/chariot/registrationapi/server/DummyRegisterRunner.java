@@ -74,9 +74,12 @@ public class DummyRegisterRunner implements Runnable {
     	
     	if (payload.getObjectType().equalsIgnoreCase(IoTEntity.SERVICE)) {
     		callServiceRegistration(payload);
-    	} else if (payload.getObjectType().equalsIgnoreCase(IoTEntity.DEVICE)) {
+    	} else if (payload.getObjectType().equalsIgnoreCase(IoTEntity.SENSOR )) {
     		callDeviceRegistration(payload);
-    	}else if (payload.getObjectType().equalsIgnoreCase(IoTEntity.HUMAN)) {
+        } else if (payload.getObjectType().equalsIgnoreCase(IoTEntity.ACTUATOR )) {
+            callDeviceRegistration(payload);
+        }
+    	else if (payload.getObjectType().equalsIgnoreCase(IoTEntity.HUMAN)) {
     		callHumanRegistration(payload);
     	}
     }

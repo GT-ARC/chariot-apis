@@ -12,14 +12,14 @@ public interface DeviceAPIFactory {
      */
     DeviceAPIFactory INSTANCE = de.gtarc.chariot.deviceapi.impl.DeviceAPIFactoryImpl.init();
 
-    /**
-     * Returns a new object of class '<em>Property Impl</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     *
-     * @return a new object of class '<em>Property Impl</em>'.
-     */
-    Property createPropertyImpl();
+//    /**
+//     * Returns a new object of class '<em>Property Impl</em>'.
+//     * <!-- begin-user-doc -->
+//     * <!-- end-user-doc -->
+//     *
+//     * @return a new object of class '<em>Property Impl</em>'.
+//     */
+//    Property createPropertyImpl();
 
     /**
      * Returns a new object of class '<em>Simple Property Impl</em>'.

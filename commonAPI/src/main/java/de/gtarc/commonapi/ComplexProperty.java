@@ -5,24 +5,24 @@ package de.gtarc.commonapi;
 
 import java.util.List;
 
-public interface ComplexProperty extends Property {
+public interface ComplexProperty extends Property<List<SimpleProperty>> {
+
     /**
-     * Returns the value of the '<em><b>Sub Properties</b></em>' containment reference list.
-     * The list contents are of type {@link deviceapi.Property}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Sub Properties</em>' containment reference list isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Sub Properties</em>' containment reference list.
      *
+     * @return
      */
+    List<SimpleProperty> getValue();
 
-    List<Property> getSubProperties();
+    /**
+     *
+     * @param value
+     */
+    void setValue(List<SimpleProperty> value);
 
-    void addSubProperty(Property property);
+    List<SimpleProperty> getSubProperties();
 
-    void removeSubProperty(Property property);
+    void addSubProperty(SimpleProperty property);
+
+    void removeSubProperty(SimpleProperty property);
 
 } // ComplexProperty
