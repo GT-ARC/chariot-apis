@@ -1,6 +1,6 @@
 # CHARIOT APIs Documentation
 
-##Common API
+## Common API
 
 All common terms that are required for the other apis are defined unter this api. The definition of the IoT entities along with their relevant properties are described in detail. From the basic property to the complex `property` definitions are implemented. All composing parts of an IoT entity is implemented. 
 
@@ -191,7 +191,7 @@ server.connect();
 ```
 
 
-##DBHandler API
+## DBHandler API
 
 Database(db)-handler API targets to communicate with a database that supports the entity models described in messageAPI and commonAPI. The current implementation is composed of two database handler, namely, knowledge-management-service (kms) handler and a dummydbhandler. 
 
@@ -215,7 +215,7 @@ PayloadEntityRegistration payload
 kms.registerEntity(payload);
 ```
 
-##Device API
+## Device API
 
 Devices plays a crucial role in IoT middleware project and their unified description is required to ensure their mutual interaction. Device API provides the way of describing the devices in CHARIOT middleware. As in other APIs,  device API can be also independently embedded in many project thanks to the modular design. This API have two dependencies, namely, `connection API` and `common API`. 
 
@@ -244,7 +244,7 @@ Device device = new DeviceBuilder()
 
 DeviceConnection can be also added to the above code block.
 
-##Human API
+## Human API
 
 The integration human actor in smart spaces and her interaction with the surrounding environment require a special API for these purposes. human API integrates the human actor in the CHARIOT ecosystem, and enables her communication with other IoT entities based on her skills. The data model of human is quite similar to other data models and its is constructed indeed on the entity data model being introduced in `common api`. The prominent characteristics of the human api are published in paper[link]. Apart from that, a simple human actor can be instantiated with the following code piece:
 
@@ -262,7 +262,7 @@ The integration human actor in smart spaces and her interaction with the surroun
 
 The property number can be increased as much as possible according to the use case requirements.
 
-##Message API
+## Message API
 
 The communication among CHARIOT entities occurs through the encapsulated message structure and the purpose of message API is to provide the message ingredients. The message form does includes meta information, we can call it as header information, and the payload that contains the message itself. All messages are serialized/deserialized va Google gson library. The message structure is designed by thinking of a publish/subscbribe system, however, it can be also adapted for other message exchanging types such as REST.
 
@@ -415,7 +415,7 @@ Based on the aforementioned message format, all chariot payloads are created und
 - `PayloadEntityUpdate`: Similar to `PayloadEntity` and `PayloadEntityRegistration`
 - `PayloadEntityAttribute`: Message for modifiying an entity attribute such as `location`,`ip` except `operations` and `properties`. 
 
-##Service API
+## Service API
 
 A service API is needed for describing a service in an IoT environment. Unlike device api, a service should be  customizable and should communicate with other IoT entities such as devices, humans and other services. Service API is built upon entity definition in `common api`. It offers adding new properties at the runtime with the aim of storing and processing an entity value.
 
